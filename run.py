@@ -8,8 +8,9 @@ computer_board = [[' '*game_size for x in range(game_size)]]
 
 def user_ship_locations():
     for i in range(game_size):
-        print(f"Enter co-orderinates of ship number {i}")
-        input("Enter x,y co-ordinates of ship ")
+        print(f"Enter co-orderinates of ship number {i+1}")
+        co_ord=input("Enter x,y co-ordinates of ship separated by a comma")
+        print(co_ord)
 
 def check_grid_input():
     pass
@@ -26,9 +27,7 @@ def user_move():
 def adjust_scores():
     pass
 
-def
-
-
+user_ship_locations()
 
 
 
