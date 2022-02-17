@@ -44,8 +44,19 @@ num_ships_sunk=0
 
 
 def get_grid_size():
-    
-    pass
+    global grid_size
+
+    while True:
+        try:
+            grid_size = int(input("Please enter the grid size between 8 & 15: "))
+            if grid_size <8 or grid_size > 15:
+                continue
+            print(grid_size)
+            break
+        except ValueError:
+            print('\nYou did not enter a valid integer')
+
+get_grid_size()
 
 def print_grid():
     pass
