@@ -81,15 +81,88 @@ def position_ships(length,quatity):
             pass
         } """
 
-
-
-
 def check_if_position_possible(length,start_x,start_y,direction):
 
+    """ check_ship_fits(length,start_x,start_y,direction)
+    check_clear_water(length,start_x,start_y,direction)
+
     print('yes')
+ """
 
+def check_ship_fits(length,start_row,start_col,direction):
+    if direction=='North':
+        if(start_col-length>=-1):
+            return True
+        else:
+            return False
 
-position_ships(2,2)
+    if direction=='South':
+        if(start_col+length<=grid_size):
+            return True
+        else:
+            return False
+
+    if direction=='East':
+        if(start_row+length<=grid_size):
+            return True
+        else:
+            return False
+
+    if direction=='West':
+        if(start_row-length>=-1):
+            return True
+        else:
+            return False
+        
+
+def check_clear_water(length,start_row,start_col,direction):
+    
+    if direction=='North':
+        non_water=0
+        for position in range(length):
+            if grid[start_row-position][start_col]!='~':
+                non_water+=1
+        if non_water==0:
+            return True
+        else:
+            return False
+    
+    if direction=='South':
+        non_water=0
+        for position in range(length):
+            if grid[start_row+position][start_col]!='~':
+                non_water+=1
+        if non_water==0:
+            return True
+        else:
+            return False
+        
+
+    if direction=='West':
+        non_water=0
+        for position in range(length):
+            if grid[start_row][start_col-position]!='~':
+                non_water+=1
+        if non_water==0:
+            return True
+        else:
+            return False
+
+    if direction=='East':
+        non_water=0
+        for position in range(length):
+            if grid[start_row][start_col+position]!='~':
+                non_water+=1
+        if non_water==0:
+            return True
+        else:
+            return False
+        
+
+grid[9][9]='0'
+x=check_clear_water(2,8,9,'South')
+print(x)
+
 def throw_bomb():
     pass
 
