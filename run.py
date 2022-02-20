@@ -41,7 +41,8 @@ bombs_left = 50
 grid=[]
 num_ships_sunk=0
 grid_size = 10
-
+""" ship_sizes = {'c1':5,'b1':4} """
+ship_sizes = {'c1':5,'b1':4,'b2':4,'d1':3,'d2':3,'d3':3,'p1':2,'p2':2,'p3':2,'p4':2}
 
 def get_grid_size():
     global grid_size
@@ -71,9 +72,6 @@ def print_grid(grid):
     for i in range(grid_size):
         print(i+1, grid[i])
     
-
-
-
 def check_ship_fits(length,start_row,start_col,direction):
 
     if direction=='north':
@@ -83,13 +81,13 @@ def check_ship_fits(length,start_row,start_col,direction):
             return False
 
     if direction=='south':
-        if(start_row+(length-1)<=grid_size):
+        if(start_row+(length-1)<=grid_size-1):
             return check_clear_water(length,start_row,start_col,direction)
         else:
             return False
 
     if direction=='east':
-        if(start_col+(length-1)<=grid_size):
+        if(start_col+(length-1)<=grid_size-1):
             return check_clear_water(length,start_row,start_col,direction)
         else:
             return False
@@ -173,7 +171,8 @@ def place_ship(length,start_row,start_col,direction,boat):
 
 
 
-position_ships(3,'s1')
+for key,value in ship_sizes.items():
+    position_ships(value,key)
 print_grid(grid)
 
 
