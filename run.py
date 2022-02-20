@@ -67,57 +67,44 @@ def create_initial_grid():
 
 create_initial_grid()
 
-def print_grid():
-    pass
+def print_grid(grid):
+    for i in range(grid_size):
+        print(i+1, grid[i])
+    
 
-def position_ships(length,quatity):
-    direction=random.choice(('north','south','east','west'))
-    start_x=random.randint(0,grid_size-1)
-    start_y=random.randint(0,grid_size-1)
-    print(start_x)
-    print(start_y)
-    """ if check_if_position_possible(length,start_point,direction)==True:
-        {
-            pass
-        } """
 
-def check_if_position_possible(length,start_x,start_y,direction):
-
-    """ check_ship_fits(length,start_x,start_y,direction)
-    check_clear_water(length,start_x,start_y,direction)
-
-    print('yes')
- """
 
 def check_ship_fits(length,start_row,start_col,direction):
-    if direction=='North':
-        if(start_col-length>=-1):
-            return True
+
+    if direction=='north':
+        if(start_row-(length-1)>=0):
+            return check_clear_water(length,start_row,start_col,direction)
         else:
             return False
 
-    if direction=='South':
-        if(start_col+length<=grid_size):
-            return True
+    if direction=='south':
+        if(start_row+(length-1)<=grid_size):
+            return check_clear_water(length,start_row,start_col,direction)
         else:
             return False
 
-    if direction=='East':
-        if(start_row+length<=grid_size):
-            return True
+    if direction=='east':
+        if(start_col+(length-1)<=grid_size):
+            return check_clear_water(length,start_row,start_col,direction)
         else:
             return False
 
-    if direction=='West':
-        if(start_row-length>=-1):
-            return True
+    if direction=='west':
+        if(start_col-(length-1)>=0):
+            return check_clear_water(length,start_row,start_col,direction)
         else:
             return False
         
 
 def check_clear_water(length,start_row,start_col,direction):
+
     
-    if direction=='North':
+    if direction=='north':
         non_water=0
         for position in range(length):
             if grid[start_row-position][start_col]!='~':
@@ -127,7 +114,7 @@ def check_clear_water(length,start_row,start_col,direction):
         else:
             return False
     
-    if direction=='South':
+    if direction=='south':
         non_water=0
         for position in range(length):
             if grid[start_row+position][start_col]!='~':
@@ -136,19 +123,18 @@ def check_clear_water(length,start_row,start_col,direction):
             return True
         else:
             return False
-        
-
-    if direction=='West':
+    
+    if direction=='west':
         non_water=0
         for position in range(length):
             if grid[start_row][start_col-position]!='~':
-                non_water+=1
+                non_water+=1        
         if non_water==0:
             return True
         else:
             return False
 
-    if direction=='East':
+    if direction=='east':
         non_water=0
         for position in range(length):
             if grid[start_row][start_col+position]!='~':
@@ -157,11 +143,39 @@ def check_clear_water(length,start_row,start_col,direction):
             return True
         else:
             return False
-        
 
-grid[9][9]='0'
-x=check_clear_water(2,8,9,'South')
-print(x)
+def position_ships(length,boat):
+    
+    position_ship_possible=False
+
+    while position_ship_possible==False:
+        direction=random.choice(('north','south','east','west'))
+        start_row=random.randint(0,grid_size-1)
+        start_col=random.randint(0,grid_size-1)
+        position_ship_possible=check_ship_fits(length,start_row,start_col,direction)
+    
+    place_ship(length,start_row,start_col,direction,boat)
+    
+
+def place_ship(length,start_row,start_col,direction,boat):
+    if(direction=='north'):
+        for position in range(length):
+            grid[start_row-position][start_col]=boat
+    elif(direction=='south'):
+        for position in range(length):
+            grid[start_row+position][start_col]=boat
+    elif(direction=='east'):
+        for position in range(length):
+            grid[start_row][start_col+position]=boat
+    elif(direction=='west'):
+        for position in range(length):
+            grid[start_row][start_col-position]=boat        
+
+
+
+position_ships(3,'s1')
+print_grid(grid)
+
 
 def throw_bomb():
     pass
