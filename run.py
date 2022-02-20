@@ -9,10 +9,10 @@ from google.oauth2.service_account import Credentials
 
     1. User inputs the grid size (min-max of 10 & 15)
     2. There will be 5 types of ships (10 ships in total)
-        - Carrier (Size 5 squares) x 1
-        - Battleship (Size 4 squares) x 2
-        - Destroyer (Size 3 squares) x 3
-        - Patrol Boat (Size 2 squares) x 4
+        - Carrier (Size 5 squares) x 1 [C1]
+        - Battleship (Size 4 squares) x 2 [B1, B2]
+        - Destroyer (Size 3 squares) x 3 [D1, D2, D3]
+        - Patrol Boat (Size 2 squares) x 4 [P1, P2, P3, P4]
     3. Fixed number of bombs - 50 
     4. User gives grid co-ordinates to drop bomb
     5. Object of game is to destroy all ships before running out of bombs
@@ -38,9 +38,9 @@ SHEET = GSPREAD_CLIENT.open("project-3-battleships")
 
 num_ships = 10
 bombs_left = 50
-grid_display=[[]]
-grid_hide=[[]]
+grid=[]
 num_ships_sunk=0
+grid_size = 10
 
 
 def get_grid_size():
@@ -56,14 +56,40 @@ def get_grid_size():
         except ValueError:
             print('\nYou did not enter a valid integer')
 
-get_grid_size()
+def create_initial_grid():
+    
+    for r in range(grid_size):
+        row = []
+        for c in range(grid_size):
+            row.append("~")
+        grid.append(row)
+    
+
+create_initial_grid()
 
 def print_grid():
     pass
 
-def position_ships():
-    pass
+def position_ships(length,quatity):
+    direction=random.choice(('north','south','east','west'))
+    start_x=random.randint(0,grid_size-1)
+    start_y=random.randint(0,grid_size-1)
+    print(start_x)
+    print(start_y)
+    """ if check_if_position_possible(length,start_point,direction)==True:
+        {
+            pass
+        } """
 
+
+
+
+def check_if_position_possible(length,start_x,start_y,direction):
+
+    print('yes')
+
+
+position_ships(2,2)
 def throw_bomb():
     pass
 
