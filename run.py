@@ -40,7 +40,7 @@ num_ships = 10
 bombs_left = 50
 grid=[]
 num_ships_sunk=0
-grid_size = 10
+grid_size = 12
 ship_sizes = {'c1':5,'b1':4,'b2':4,'d1':3,'d2':3,'d3':3,'p1':2,'p2':2,'p3':2,'p4':2}
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 test_mode=False
@@ -201,12 +201,37 @@ def position_ships_on_grid():
         position_ships(value,key)
 
 position_ships_on_grid()
-""" print_grid(grid) """
 print_grid_display(grid)
 
 
-def throw_bomb():
-    pass
+def get_bomb():
+    global alphabet
+    alphabet = alphabet[0: grid_size]
+    within_grid=False
+    while within_grid==False:
+        position_bomb = input("Enter row (A-J) and column (0-9) such as G7: ")
+        position_bomb = position_bomb.upper()
+        if len(position_bomb) <= 0 or len(position_bomb) > 2:
+            print("Error: Please enter only one row and column such as A3")
+            continue
+        row = position_bomb[0]
+        col = position_bomb[1]
+        if (not row.isalpha() or not col.isnumeric()):
+            print("Error: Invalid entry")
+        col=int(col)
+        if (row not in alphabet) or (not 0<=col<=grid_size-1):
+            print("Error: Your choice was off the grid")
+            continue
+        row = alphabet.find(row)
+        if (grid[row][col]=="#" or grid[row][col]=="X"):
+            print("Error: You have already thrown a bomb here")
+            continue
+        if (grid[row][col]=="~" or len(grid[row][col])==2):
+            within_grid=True
+        
+    print(row, col)
+
+get_bomb()
 
 def check_ship_sunk():
     pass
