@@ -41,8 +41,9 @@ bombs_left = 50
 grid=[]
 num_ships_sunk=0
 grid_size = 10
-""" ship_sizes = {'c1':5,'b1':4} """
 ship_sizes = {'c1':5,'b1':4,'b2':4,'d1':3,'d2':3,'d3':3,'p1':2,'p2':2,'p3':2,'p4':2}
+alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+test_mode=False
 
 def get_grid_size():
     global grid_size
@@ -68,9 +69,34 @@ def create_initial_grid():
 
 create_initial_grid()
 
+
+
 def print_grid(grid):
     for i in range(grid_size):
-        print(i+1, grid[i])
+            print(i+1, grid[i])
+
+def print_grid_display(grid):
+    global alphabet
+    alphabet = alphabet[0: grid_size]
+
+    for row in range(grid_size):
+        print(alphabet[row], end=") ")
+        for col in range(len(grid[row])):
+            if len(grid[row][col]) > 1:
+                if test_mode:
+                    print(grid[row][col], end=" ")
+                else:
+                    print("~", end=" ")
+            else:
+                print(grid[row][col], end=" ")
+        print("")
+
+    print("  ", end=" ")
+    for i in range(len(grid[0])):
+        print(str(i), end=" ")
+    print("")
+
+
     
 def check_ship_fits(length,start_row,start_col,direction):
 
@@ -170,10 +196,13 @@ def place_ship(length,start_row,start_col,direction,boat):
             grid[start_row][start_col-position]=boat        
 
 
+def position_ships_on_grid():
+    for key,value in ship_sizes.items():
+        position_ships(value,key)
 
-for key,value in ship_sizes.items():
-    position_ships(value,key)
-print_grid(grid)
+position_ships_on_grid()
+""" print_grid(grid) """
+print_grid_display(grid)
 
 
 def throw_bomb():
