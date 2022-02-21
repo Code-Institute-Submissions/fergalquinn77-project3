@@ -43,7 +43,7 @@ num_ships_sunk=0
 grid_size = 12
 ship_sizes = {'c1':5,'b1':4,'b2':4,'d1':3,'d2':3,'d3':3,'p1':2,'p2':2,'p3':2,'p4':2}
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-test_mode=False
+test_mode=True
 
 def get_grid_size():
     global grid_size
@@ -65,11 +65,6 @@ def create_initial_grid():
         for c in range(grid_size):
             row.append("~")
         grid.append(row)
-    
-
-create_initial_grid()
-
-
 
 def print_grid(grid):
     for i in range(grid_size):
@@ -195,14 +190,9 @@ def place_ship(length,start_row,start_col,direction,boat):
         for position in range(length):
             grid[start_row][start_col-position]=boat        
 
-
 def position_ships_on_grid():
     for key,value in ship_sizes.items():
         position_ships(value,key)
-
-position_ships_on_grid()
-print_grid_display(grid)
-
 
 def get_bomb():
     global alphabet
@@ -229,10 +219,14 @@ def get_bomb():
         if (grid[row][col]=="~" or len(grid[row][col])==2):
             within_grid=True
         
-    print(row, col)
+    return row, col
 
-get_bomb()
-
+def place_bomb(row,col):
+    if (grid[row][col]=="~"):
+        grid[row][col]="#"
+    else:
+        grid[row][col]="X"
+        
 def check_ship_sunk():
     pass
 
@@ -242,5 +236,12 @@ def check_game_over():
 def record_game_stats():
     pass
 
+def main():
+    create_initial_grid()
+    position_ships_on_grid()
+    print_grid_display(grid)
+    row,col=get_bomb()
+    place_bomb(row,col)
+    print_grid_display(grid)
 
-
+main()
