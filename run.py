@@ -42,6 +42,13 @@ grid=[]
 num_ships_sunk=0
 grid_size = 12
 ship_sizes = {'c1':5,'b1':4,'b2':4,'d1':3,'d2':3,'d3':3,'p1':2,'p2':2,'p3':2,'p4':2}
+ship_lives_remaining = {'c1':5,'b1':4,'b2':4,'d1':3,'d2':3,'d3':3,'p1':2,'p2':2,'p3':2,'p4':2}
+ships_remaining=10
+game_over=False
+
+""" ship_names = {'c1':"Carrier", 'b1':"Battleship USS Texas", 'b2': "Battleship USS Iowa", 'd1': "Destroyer Manley"\
+'d2':"Destroyer Wickes",'d3':"Destroyer Philip", 'p1':"Patrol Ship USS Cyclone", 'p2':"Patrol Ship USS Hurricane",\
+'p3':"Patrol Ship USS Monsoon", 'p4':"Patrol Ship USS Sirocco"} """
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 test_mode=True
 
@@ -221,22 +228,31 @@ def get_bomb():
         
     return row, col
 
+def check_ship_sunk(ship):
+    global ships_remaining
+    if ship_lives_remaining[ship]==0:
+        ships_remaining-=1
+        print('You sunk a ship')
+
 def place_bomb():
+    global bombs_left
     row,col=get_bomb()
     if (grid[row][col]=="~"):
         grid[row][col]="#"
     else:
+        ship_hit=grid[row][col]
+        ship_lives_remaining[ship_hit]-=1
+        check_ship_sunk(ship_hit)
         grid[row][col]="X"
-        
-def check_ship_sunk(ship_type):
-    ship_sunk=True
-    for i in range (0,grid_size):
-        if ship_type in grid[i]:
-            ship_sunk=False
-    print(ship_sunk)
+    bombs_left-=1
+    
+def check_ships_sunk(ship):
+    pass
 
 def check_game_over():
-    pass
+    global game_over
+    if bombs_left ==0 or num_ships_sunk==10:
+        game_over=True
 
 def record_game_stats():
 
@@ -255,12 +271,14 @@ class color:
    END = '\033[0m'
 
 def main():
+    global game_over
     print(color.RED + '----Welcome to Battleships----' + color.END)
     create_initial_grid()
     position_ships_on_grid()
     print_grid_display(grid)
-    place_bomb()
-    check_ship_sunk('d2')
-    print_grid_display(grid)
+    while game_over is False:
+        place_bomb()
+        print_grid_display(grid)
+        check_game_over()
 
 main()
