@@ -221,27 +221,46 @@ def get_bomb():
         
     return row, col
 
-def place_bomb(row,col):
+def place_bomb():
+    row,col=get_bomb()
     if (grid[row][col]=="~"):
         grid[row][col]="#"
     else:
         grid[row][col]="X"
         
-def check_ship_sunk():
-    pass
+def check_ship_sunk(ship_type):
+    ship_sunk=True
+    for i in range (0,grid_size):
+        if ship_type in grid[i]:
+            ship_sunk=False
+    print(ship_sunk)
 
 def check_game_over():
     pass
 
 def record_game_stats():
+
     pass
 
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+
 def main():
+    print(color.RED + '----Welcome to Battleships----' + color.END)
     create_initial_grid()
     position_ships_on_grid()
     print_grid_display(grid)
-    row,col=get_bomb()
-    place_bomb(row,col)
+    place_bomb()
+    check_ship_sunk('d2')
     print_grid_display(grid)
 
 main()
