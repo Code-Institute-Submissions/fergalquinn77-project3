@@ -37,7 +37,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("project-3-battleships")
 
 num_ships = 10
-bombs_left = 50
+bombs_left = 5
 grid=[]
 num_ships_sunk=0
 grid_size = 12
@@ -51,6 +51,26 @@ game_over=False
 'p3':"Patrol Ship USS Monsoon", 'p4':"Patrol Ship USS Sirocco"} """
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 test_mode=True
+
+""" class ships():
+    def __init__(self, code, name, size, lives_remaining):
+        self.code = code
+        self.name = name
+        self.size = size
+        self.lives_remaining = lives_remaining
+
+
+sc1 = ships('c1','USS Langley',5,5)
+sb1 = ships('b1','Battleship USS Texas',4,4)
+sb2 = ships('b2','Battleship USS Iowa',4,4)
+sd1 = ships('d1','Destroyer Manley',3,3)
+sd2 = ships('d2','Destroyer Wickes',3,3)
+sd3 = ships('d3','Destroyer Philip',3,3)
+sp1 = ships('p1','Patrol Ship USS Cyclone',2,2)
+sp2 = ships('p2','Patrol Ship USS Hurricane',2,2)
+sp3 = ships('p3','Patrol Ship USS Monsoon',2,2)
+sp4 = ships('p4','Patrol Ship USS Sirocco',2,2)
+ """
 
 def get_grid_size():
     global grid_size
@@ -201,6 +221,7 @@ def position_ships_on_grid():
     for key,value in ship_sizes.items():
         position_ships(value,key)
 
+
 def get_bomb():
     global alphabet
     alphabet = alphabet[0: grid_size]
@@ -253,6 +274,7 @@ def check_game_over():
     global game_over
     if bombs_left ==0 or num_ships_sunk==10:
         game_over=True
+        print("Game Over")
 
 def record_game_stats():
 
@@ -271,6 +293,7 @@ class color:
    END = '\033[0m'
 
 def main():
+    
     global game_over
     print(color.RED + '----Welcome to Battleships----' + color.END)
     create_initial_grid()
