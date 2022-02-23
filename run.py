@@ -37,7 +37,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("project-3-battleships")
 
 num_ships = 10
-bombs_left = 5
+bombs_left = 2
 grid=[]
 num_ships_sunk=0
 grid_size = 12
@@ -45,6 +45,7 @@ ship_sizes = {'c1':5,'b1':4,'b2':4,'d1':3,'d2':3,'d3':3,'p1':2,'p2':2,'p3':2,'p4
 ship_lives_remaining = {'c1':5,'b1':4,'b2':4,'d1':3,'d2':3,'d3':3,'p1':2,'p2':2,'p3':2,'p4':2}
 ships_remaining=10
 game_over=False
+USER_NAME=""
 
 """ ship_names = {'c1':"Carrier", 'b1':"Battleship USS Texas", 'b2': "Battleship USS Iowa", 'd1': "Destroyer Manley"\
 'd2':"Destroyer Wickes",'d3':"Destroyer Philip", 'p1':"Patrol Ship USS Cyclone", 'p2':"Patrol Ship USS Hurricane",\
@@ -77,6 +78,8 @@ def get_grid_size():
 
     while True:
         try:
+            global USER_NAME
+            USER_NAME = input("Please enter your name: ")
             grid_size = int(input("Please enter the grid size between 8 & 15: "))
             if grid_size <8 or grid_size > 15:
                 continue
@@ -275,10 +278,15 @@ def check_game_over():
     if bombs_left ==0 or num_ships_sunk==10:
         game_over=True
         print("Game Over")
+        record_game_stats()
 
 def record_game_stats():
-
-    pass
+    print(num_ships_sunk)
+    data= [bombs_left,num_ships_sunk, USER_NAME]
+    print("Let's see how you did...\n")
+    battleships_worksheet = SHEET.worksheet("battleships")
+    battleships_worksheet.append_row(data)
+    print("Updated successfully \n")
 
 class color:
    PURPLE = '\033[95m'
@@ -296,6 +304,7 @@ def main():
     
     global game_over
     print(color.RED + '----Welcome to Battleships----' + color.END)
+    get_grid_size()
     create_initial_grid()
     position_ships_on_grid()
     print_grid_display(grid)
