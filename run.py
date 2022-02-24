@@ -39,7 +39,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("project-3-battleships")
 
 num_ships = 10
-bombs_left = 2
+bombs_left = 10
 grid=[]
 num_ships_sunk=0
 grid_size = 12
@@ -123,6 +123,8 @@ def print_grid_display(grid):
     for row in range(grid_size):
         print(alphabet[row], end=") ")
         color = fg('blue')
+        color_miss=fg('yellow')
+        color_hit=fg('red')
         reset = attr('reset')
         for col in range(len(grid[row])):
             if len(grid[row][col]) > 1:
@@ -131,7 +133,16 @@ def print_grid_display(grid):
                 else:
                     print(color + "~" + reset, end="  ")
             else:
-                print(color + grid[row][col] + reset, end="  ")
+                if(grid[row][col]=='#'):
+                    print(color_miss + grid[row][col] + reset, end="  ")
+                    reset = attr('reset')
+                elif(grid[row][col]=='X') :
+                    print(color_hit + grid[row][col] + reset, end="  ")
+                    reset = attr('reset')
+                else:
+                    print(color + grid[row][col] + reset, end="  ")
+                    reset = attr('reset')
+
         print("")
 
     print("  ", end=" ")
