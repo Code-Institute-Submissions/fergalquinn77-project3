@@ -122,14 +122,16 @@ def print_grid_display(grid):
 
     for row in range(grid_size):
         print(alphabet[row], end=") ")
+        color = fg('blue')
+        reset = attr('reset')
         for col in range(len(grid[row])):
             if len(grid[row][col]) > 1:
                 if test_mode:
                     print(grid[row][col], end=" ")
                 else:
-                    print("~", end="  ")
+                    print(color + "~" + reset, end="  ")
             else:
-                print(grid[row][col], end="  ")
+                print(color + grid[row][col] + reset, end="  ")
         print("")
 
     print("  ", end=" ")
