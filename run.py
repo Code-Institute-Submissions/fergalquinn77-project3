@@ -85,6 +85,8 @@ sp2 = ships('p2','Patrol Ship USS Hurricane',2,2)
 sp3 = ships('p3','Patrol Ship USS Monsoon',2,2)
 sp4 = ships('p4','Patrol Ship USS Sirocco',2,2) 
 
+full_ship_details = [sc1,sb1,sb2,sd1,sd2,sd3,sp1,sp2,sp3,sp4]
+
 def get_grid_size():
     global grid_size
 
@@ -266,8 +268,10 @@ def get_bomb():
 
 def check_ship_sunk(ship):
     global ships_remaining
+    global num_ships_sunk
     if ship_lives_remaining[ship]==0:
         ships_remaining-=1
+        num_ships_sunk+=1
         print('You sunk the', ship_names[ship])
 
 def place_bomb():
@@ -318,6 +322,8 @@ def main():
     global game_over
     intro=text2art("Welcome  to  Battleships")
     print(intro)
+    print("You get the choose the grid size (the higher, the more difficult). You get 50 bombs")
+    print("There are 10 ships in ranging in size from 2 (Patrol Boats) to 5 (Carriers)")
     get_grid_size()
     create_initial_grid()
     position_ships_on_grid()
