@@ -59,11 +59,10 @@ ship_names = {
     'p2':'Patrol Ship USS Hurricane',
     'p3':'Patrol Ship USS Monsoon', 
     'p4':'Patrol Ship USS Sirocco'}
-
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-test_mode=True
+test_mode=False
 
-class ships():
+""" class ships():
     def __init__(self, code, name, size, lives_remaining):
         self.code = code
         self.name = name
@@ -72,7 +71,6 @@ class ships():
 
     def bomb(self):
         self.lives_remaining -=1
-
 
 sc1 = ships('c1','USS Langley',5,5)
 sb1 = ships('b1','Battleship USS Texas',4,4)
@@ -85,9 +83,12 @@ sp2 = ships('p2','Patrol Ship USS Hurricane',2,2)
 sp3 = ships('p3','Patrol Ship USS Monsoon',2,2)
 sp4 = ships('p4','Patrol Ship USS Sirocco',2,2) 
 
-full_ship_details = [sc1,sb1,sb2,sd1,sd2,sd3,sp1,sp2,sp3,sp4]
+full_ship_details = [sc1,sb1,sb2,sd1,sd2,sd3,sp1,sp2,sp3,sp4] """
 
 def get_grid_size():
+    """ 
+    This function gets the grid size from the user. 
+    """
     global grid_size
 
     while True:
@@ -103,18 +104,19 @@ def get_grid_size():
             print('\nYou did not enter a valid integer')
 
 def create_initial_grid():
-    
+    """ 
+    Create the initial grid that contains water '~' throughout 
+    """
     for r in range(grid_size):
         row = []
         for c in range(grid_size):
             row.append("~")
         grid.append(row)
 
-""" def print_grid(grid):
-    for i in range(grid_size):
-            print(i+1, grid[i]) """
-
 def print_grid_display(grid):
+    """ 
+    Display/print the grid. Option to show ships for testing purposes 
+    """ 
     global alphabet
     alphabet = alphabet[0: grid_size]
 
@@ -135,10 +137,12 @@ def print_grid_display(grid):
         print(str(i), end="  ")
     print("")
 
-
-    
 def check_ship_fits(length,start_row,start_col,direction):
-
+    """ 
+    When positioning ships in grid - check to see if the ship fits on grid. Ships are
+    positioned randomly - they cannot be positioned if they are off the grid. Once the ship
+    fits - it then checks whether there is clear water to position the ship.
+    """
     if direction=='north':
         if(start_row-(length-1)>=0):
             return check_clear_water(length,start_row,start_col,direction)
@@ -163,10 +167,11 @@ def check_ship_fits(length,start_row,start_col,direction):
         else:
             return False
         
-
 def check_clear_water(length,start_row,start_col,direction):
-
-    
+    """ 
+    Check when positioning ships, that there are no other ships in the way. This function
+    is used in the check_ship_fits function once it determines that the ship can fit. 
+    """
     if direction=='north':
         non_water=0
         for position in range(length):
@@ -208,7 +213,12 @@ def check_clear_water(length,start_row,start_col,direction):
             return False
 
 def position_ships(length,boat):
-    
+    """ 
+    Used to position the ships on grid. Choose the position randomly. 
+    Then check it fits using the check_ship_fits and that there is clear water using
+    check_clear_water. Once it passes both these - the ships can be positioned
+    and the grid is updated.
+    """  
     position_ship_possible=False
 
     while position_ship_possible==False:
@@ -240,6 +250,10 @@ def position_ships_on_grid():
 
 
 def get_bomb():
+    """ 
+    Get co-ordinates from user for positioning bomb. Run validity checks
+    and then pass the co-ordinates on the position_bomb function.
+    """
     global alphabet
     alphabet = alphabet[0: grid_size]
     within_grid=False
@@ -267,6 +281,10 @@ def get_bomb():
     return row, col
 
 def check_ship_sunk(ship):
+    """ 
+    Check if a ship is sunk after a hit. This function is called 
+    in the place_bomb function.
+    """
     global ships_remaining
     global num_ships_sunk
     if ship_lives_remaining[ship]==0:
@@ -275,6 +293,10 @@ def check_ship_sunk(ship):
         print('You sunk the', ship_names[ship])
 
 def place_bomb():
+    """ 
+    Once valid co-ordinates are entered by user in get_bomb function, this function
+    checks whether it's a hit or miss. Updates the grid accordingly. 
+     """
     global bombs_left
     row,col=get_bomb()
     if (grid[row][col]=="~"):
@@ -285,11 +307,12 @@ def place_bomb():
         check_ship_sunk(ship_hit)
         grid[row][col]="X"
     bombs_left-=1
-    
-def check_ships_sunk(ship):
-    pass
 
 def check_game_over():
+    """ 
+    Checks if game is over (either bombs have run out or all ships have#
+    been sunk). 
+     """
     global game_over
     if bombs_left ==0 or num_ships_sunk==10:
         game_over=True
@@ -298,6 +321,9 @@ def check_game_over():
         record_game_stats()
 
 def record_game_stats():
+    """ 
+    Record game stats to google spreadsheet when game is over. 
+    Provide feedback to user on how they did. """
     user_stats = [bombs_left,num_ships_sunk, USER_NAME]
     print("Let's see how you did...\n")
     battleships_worksheet = SHEET.worksheet("battleships")
@@ -318,7 +344,6 @@ def record_game_stats():
         print("Maybe try again to get the top score!")
     
 def main():
-    
     global game_over
     intro=text2art("Welcome  to  Battleships")
     print(intro)
