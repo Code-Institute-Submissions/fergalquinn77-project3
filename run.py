@@ -39,7 +39,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("project-3-battleships")
 
 num_ships = 10
-bombs_left = 20
+bombs_left = 2
 grid=[]
 num_ships_sunk=0
 grid_size = 12
@@ -289,16 +289,30 @@ def check_game_over():
     global game_over
     if bombs_left ==0 or num_ships_sunk==10:
         game_over=True
-        print("Game Over")
+        game_over_message=text2art("Game  Over")
+        print(game_over_message)
         record_game_stats()
 
 def record_game_stats():
-    data= [bombs_left,num_ships_sunk, USER_NAME]
+    user_stats = [bombs_left,num_ships_sunk, USER_NAME]
     print("Let's see how you did...\n")
     battleships_worksheet = SHEET.worksheet("battleships")
-    battleships_worksheet.append_row(data)
-    print("Updated successfully \n")
-
+    battleships_worksheet.append_row(user_stats)
+    all_user_stats = SHEET.worksheet("battleships").get_all_values()
+    number_players = len(all_user_stats)-1
+    best_score=0
+    best_score_user=""
+    for i in range(1,len(all_user_stats)):
+        if int(all_user_stats[i][1])>=best_score:
+            best_score=int(all_user_stats[i][1])
+            best_score_user=all_user_stats[i][2]
+    print("The top score to date (number of ships sunk) out of", number_players, "player is", best_score)
+    print("You scored ", num_ships_sunk)
+    if(num_ships_sunk==best_score):
+        print("Congrats, you are the new leader")
+    else:
+        print("Maybe try again to get the top score!")
+    
 def main():
     
     global game_over
