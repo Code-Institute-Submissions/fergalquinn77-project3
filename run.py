@@ -37,7 +37,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("project-3-battleships")
 
 num_ships = 10
-bombs_left = 2
+bombs_left = 20
 grid=[]
 num_ships_sunk=0
 grid_size = 12
@@ -47,18 +47,30 @@ ships_remaining=10
 game_over=False
 USER_NAME=""
 
-""" ship_names = {'c1':"Carrier", 'b1':"Battleship USS Texas", 'b2': "Battleship USS Iowa", 'd1': "Destroyer Manley"\
-'d2':"Destroyer Wickes",'d3':"Destroyer Philip", 'p1':"Patrol Ship USS Cyclone", 'p2':"Patrol Ship USS Hurricane",\
-'p3':"Patrol Ship USS Monsoon", 'p4':"Patrol Ship USS Sirocco"} """
+ship_names = {
+    'c1':'Carrier', 
+    'b1':'Battleship USS Texas',
+    'b2': 'Battleship USS Iowa', 
+    'd1': 'Destroyer Manley',
+    'd2':'Destroyer Wickes',
+    'd3':'Destroyer Philip', 
+    'p1':'Patrol Ship USS Cyclone', 
+    'p2':'Patrol Ship USS Hurricane',
+    'p3':'Patrol Ship USS Monsoon', 
+    'p4':'Patrol Ship USS Sirocco'}
+
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 test_mode=True
 
-""" class ships():
+class ships():
     def __init__(self, code, name, size, lives_remaining):
         self.code = code
         self.name = name
         self.size = size
         self.lives_remaining = lives_remaining
+
+    def bomb(self):
+        self.lives_remaining -=1
 
 
 sc1 = ships('c1','USS Langley',5,5)
@@ -70,8 +82,7 @@ sd3 = ships('d3','Destroyer Philip',3,3)
 sp1 = ships('p1','Patrol Ship USS Cyclone',2,2)
 sp2 = ships('p2','Patrol Ship USS Hurricane',2,2)
 sp3 = ships('p3','Patrol Ship USS Monsoon',2,2)
-sp4 = ships('p4','Patrol Ship USS Sirocco',2,2)
- """
+sp4 = ships('p4','Patrol Ship USS Sirocco',2,2) 
 
 def get_grid_size():
     global grid_size
@@ -96,9 +107,9 @@ def create_initial_grid():
             row.append("~")
         grid.append(row)
 
-def print_grid(grid):
+""" def print_grid(grid):
     for i in range(grid_size):
-            print(i+1, grid[i])
+            print(i+1, grid[i]) """
 
 def print_grid_display(grid):
     global alphabet
@@ -111,14 +122,14 @@ def print_grid_display(grid):
                 if test_mode:
                     print(grid[row][col], end=" ")
                 else:
-                    print("~", end=" ")
+                    print("~", end="  ")
             else:
-                print(grid[row][col], end=" ")
+                print(grid[row][col], end="  ")
         print("")
 
     print("  ", end=" ")
     for i in range(len(grid[0])):
-        print(str(i), end=" ")
+        print(str(i), end="  ")
     print("")
 
 
@@ -256,7 +267,7 @@ def check_ship_sunk(ship):
     global ships_remaining
     if ship_lives_remaining[ship]==0:
         ships_remaining-=1
-        print('You sunk a ship')
+        print('You sunk the', ship_names[ship])
 
 def place_bomb():
     global bombs_left
@@ -281,7 +292,6 @@ def check_game_over():
         record_game_stats()
 
 def record_game_stats():
-    print(num_ships_sunk)
     data= [bombs_left,num_ships_sunk, USER_NAME]
     print("Let's see how you did...\n")
     battleships_worksheet = SHEET.worksheet("battleships")
@@ -314,3 +324,9 @@ def main():
         check_game_over()
 
 main()
+
+""" print(sp4.name)
+print(sp4.lives_remaining)
+ships.bomb(sp4)
+print(sp4.lives_remaining) 
+print(ship_names) """
