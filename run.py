@@ -49,12 +49,12 @@ ships_remaining=10
 game_over=False
 USER_NAME=""
 ship_names = {
-    'c1':'Carrier', 
+    'c1':'Carrier USS Langley', 
     'b1':'Battleship USS Texas',
-    'b2': 'Battleship USS Iowa', 
-    'd1': 'Destroyer Manley',
-    'd2':'Destroyer Wickes',
-    'd3':'Destroyer Philip', 
+    'b2':'Battleship USS Iowa', 
+    'd1':'Destroyer USS Manley',
+    'd2':'Destroyer USS Wickes',
+    'd3':'Destroyer USS Philip', 
     'p1':'Patrol Ship USS Cyclone', 
     'p2':'Patrol Ship USS Hurricane',
     'p3':'Patrol Ship USS Monsoon', 
@@ -303,7 +303,10 @@ def check_ship_sunk(ship):
     if ship_lives_remaining[ship]==0:
         ships_remaining-=1
         num_ships_sunk+=1
-        print('You sunk the', ship_names[ship])
+        color_ship_sunk=fg('red')
+        reset = attr('reset')
+        print(color_ship_sunk + 'You sunk the', ship_names[ship] + reset)
+        reset = attr('reset')
 
 def place_bomb():
     """ 
@@ -319,10 +322,10 @@ def place_bomb():
     else:
         ship_hit=grid[row][col]
         ship_lives_remaining[ship_hit]-=1
-        check_ship_sunk(ship_hit)
         grid[row][col]="X"
         message=text2art("YOU  HIT  A  SHIP")
         print(message)
+        check_ship_sunk(ship_hit)
     bombs_left-=1
 
 def check_game_over():
