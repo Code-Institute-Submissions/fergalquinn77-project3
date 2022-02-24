@@ -1,6 +1,8 @@
 import random
 import gspread
 from google.oauth2.service_account import Credentials
+from art import *
+from colored import fg, bg, attr
 
 """
     Battleships
@@ -46,7 +48,6 @@ ship_lives_remaining = {'c1':5,'b1':4,'b2':4,'d1':3,'d2':3,'d3':3,'p1':2,'p2':2,
 ships_remaining=10
 game_over=False
 USER_NAME=""
-
 ship_names = {
     'c1':'Carrier', 
     'b1':'Battleship USS Texas',
@@ -298,22 +299,11 @@ def record_game_stats():
     battleships_worksheet.append_row(data)
     print("Updated successfully \n")
 
-class color:
-   PURPLE = '\033[95m'
-   CYAN = '\033[96m'
-   DARKCYAN = '\033[36m'
-   BLUE = '\033[94m'
-   GREEN = '\033[92m'
-   YELLOW = '\033[93m'
-   RED = '\033[91m'
-   BOLD = '\033[1m'
-   UNDERLINE = '\033[4m'
-   END = '\033[0m'
-
 def main():
     
     global game_over
-    print(color.RED + '----Welcome to Battleships----' + color.END)
+    intro=text2art("Welcome  to  Battleships")
+    print(intro)
     get_grid_size()
     create_initial_grid()
     position_ships_on_grid()
