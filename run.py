@@ -303,11 +303,15 @@ def place_bomb():
     row,col=get_bomb()
     if (grid[row][col]=="~"):
         grid[row][col]="#"
+        message=text2art("YOU  MISSED")
+        print(message)
     else:
         ship_hit=grid[row][col]
         ship_lives_remaining[ship_hit]-=1
         check_ship_sunk(ship_hit)
         grid[row][col]="X"
+        message=text2art("YOU  HIT  A  SHIP")
+        print(message)
     bombs_left-=1
 
 def check_game_over():
@@ -318,7 +322,7 @@ def check_game_over():
     global game_over
     if bombs_left ==0 or num_ships_sunk==10:
         game_over=True
-        game_over_message=text2art("Game  Over")
+        game_over_message=text2art("GAME  OVER")
         print(game_over_message)
         record_game_stats()
 
@@ -338,7 +342,7 @@ def record_game_stats():
         if int(all_user_stats[i][1])>=best_score:
             best_score=int(all_user_stats[i][1])
             best_score_user=all_user_stats[i][2]
-    print("The top score to date (number of ships sunk) out of", number_players, "player is", best_score)
+    print("The top score to date (number of ships sunk) out of", number_players, "players to date is", best_score)
     print("You scored ", num_ships_sunk)
     if(num_ships_sunk==best_score):
         print("Congrats, you are the new leader")
