@@ -107,7 +107,6 @@ def get_grid_size():
                 "Please enter the grid size between 8 & 15: \n"))
             if grid_size < 8 or grid_size > 15:
                 continue
-            print(grid_size)
             break
         except ValueError:
             print('\nYou did not enter a valid integer')
