@@ -102,9 +102,9 @@ def get_grid_size():
     while True:
         try:
             global USER_NAME
-            USER_NAME = input("Please enter your name: ")
+            USER_NAME = input("Please enter your name: \n")
             grid_size = int(input(
-                "Please enter the grid size between 8 & 15: "))
+                "Please enter the grid size between 8 & 15: \n"))
             if grid_size < 8 or grid_size > 15:
                 continue
             print(grid_size)
@@ -297,7 +297,7 @@ def get_bomb():
     alphabet = alphabet[0: grid_size]
     within_grid = False
     while within_grid is False:
-        position_bomb = input("Enter row (A-J) and column (0-9) such as G7: ")
+        position_bomb = input("Enter row (A-J) and column (0-9) such as G7: \n")
         position_bomb = position_bomb.upper()
         if len(position_bomb) <= 0 or len(position_bomb) > 2:
             print("Error: Please enter only one row and column such as A3")
@@ -401,7 +401,7 @@ def main():
     Main function for program
     """
     global game_over
-    intro = text2art("Welcome  to  Battleships")
+    intro = text2art("Battleships")
     print(intro)
     msg = 'You get the choose the grid size - the higher, the more difficult.'\
         + ' You get 50 bombs'
