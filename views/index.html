@@ -1,11 +1,13 @@
-<link rel="stylesheet" href="static/css/style.css">
+<head>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
 <body>
     <button onclick="window.location.reload()">Run Program</button>
     <div id="terminal"></div>
 
     <script>
         var term = new Terminal({
-            cols: 80,
+            cols: 100,
             rows: 24
         });
         term.open(document.getElementById('terminal'));
