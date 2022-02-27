@@ -39,10 +39,10 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("project-3-battleships")
 
 num_ships = 10
-bombs_left = 10
+bombs_left = 50
 grid = []
 num_ships_sunk = 0
-grid_size = 12
+grid_size = 10
 ship_sizes = {
     'c1': 5, 'b1': 4, 'b2': 4, 'd1': 3, 'd2': 3,
     'd3': 3, 'p1': 2, 'p2': 2, 'p3': 2, 'p4': 2}
@@ -296,7 +296,8 @@ def get_bomb():
     alphabet = alphabet[0: grid_size]
     within_grid = False
     while within_grid is False:
-        position_bomb = input("Enter row (A-J) and column (0-9) such as G7: \n")
+        message = f'Enter row (A-{alphabet[grid_size-1]}) and column (0-{grid_size}) such as G7: '
+        position_bomb = input(message)
         position_bomb = position_bomb.upper()
         if len(position_bomb) <= 0 or len(position_bomb) > 2:
             print("Error: Please enter only one row and column such as A3")
