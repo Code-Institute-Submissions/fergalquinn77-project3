@@ -123,16 +123,17 @@ def create_initial_grid():
             row.append("~")
         grid.append(row)
 
+
 def spacing(col):
     """
     Adjusts the space between colums on grid.
     """
-    short = "  "
-    long = "   "
-    if col <10:
-        return short    
+    two_spaces = "  "
+    three_spaces = "   "
+    if col < 10:
+        return two_spaces
     else:
-        return long
+        return three_spaces
 
 
 def print_grid_display(grid):
@@ -157,7 +158,8 @@ def print_grid_display(grid):
                     print(color + "~" + reset, end=spacing(col))
             else:
                 if(grid[row][col] == '#'):
-                    print(color_miss + grid[row][col] + reset, end=spacing(col))
+                    print(
+                        color_miss + grid[row][col] + reset, end=spacing(col))
                     reset = attr('reset')
                 elif(grid[row][col] == 'X'):
                     print(color_hit + grid[row][col] + reset, end=spacing(col))
@@ -308,7 +310,7 @@ def get_bomb():
     alphabet = alphabet[0: grid_size]
     within_grid = False
     while within_grid is False:
-       
+
         position_bomb = input(message)
         position_bomb = position_bomb.upper()
         if len(position_bomb) <= 0 or len(position_bomb) > 2:
