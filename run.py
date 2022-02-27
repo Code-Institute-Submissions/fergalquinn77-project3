@@ -123,6 +123,17 @@ def create_initial_grid():
             row.append("~")
         grid.append(row)
 
+def spacing(col):
+    """
+    Adjusts the space between colums on grid.
+    """
+    short = "  "
+    long = "   "
+    if col <10:
+        return short    
+    else:
+        return long
+
 
 def print_grid_display(grid):
     """
@@ -143,16 +154,16 @@ def print_grid_display(grid):
                 if test_mode:
                     print(grid[row][col], end=" ")
                 else:
-                    print(color + "~" + reset, end="  ")
+                    print(color + "~" + reset, end=spacing(col))
             else:
                 if(grid[row][col] == '#'):
-                    print(color_miss + grid[row][col] + reset, end="  ")
+                    print(color_miss + grid[row][col] + reset, end=spacing(col))
                     reset = attr('reset')
                 elif(grid[row][col] == 'X'):
-                    print(color_hit + grid[row][col] + reset, end="  ")
+                    print(color_hit + grid[row][col] + reset, end=spacing(col))
                     reset = attr('reset')
                 else:
-                    print(color + grid[row][col] + reset, end="  ")
+                    print(color + grid[row][col] + reset, end=spacing(col))
                     reset = attr('reset')
 
         print("")
@@ -293,10 +304,11 @@ def get_bomb():
     and then pass the co-ordinates on the position_bomb function.
     """
     global alphabet
+    message = f'Enter row (A-{alphabet[grid_size-1]}) and column (0-{grid_size}) such as G7: '
     alphabet = alphabet[0: grid_size]
     within_grid = False
     while within_grid is False:
-        message = f'Enter row (A-{alphabet[grid_size-1]}) and column (0-{grid_size}) such as G7: '
+       
         position_bomb = input(message)
         position_bomb = position_bomb.upper()
         if len(position_bomb) <= 0 or len(position_bomb) > 2:
