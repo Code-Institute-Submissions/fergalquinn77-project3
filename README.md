@@ -47,7 +47,7 @@ The user can vary the difficulty level of the game. This is done by varying the 
 
 ## USER STORIES
 
-* As a User, I want the game to have varying difficulty
+* As a User, I want the game that I can set the difficulty
 * As a User, I want the option to see how how many bombs I've left and how many ships are sunk
 * As a User, I want to see how I performed compared to other users
 * As a User, I want the option to play again
@@ -69,8 +69,7 @@ The user can vary the difficulty level of the game. This is done by varying the 
 
 ![Enter name](docs/images/name_input.jpg)
 
-* Once the User name has been entered, the User is then presented with game rules
-    and `Please choose upper limit` appears
+* Once the User name has been entered, the User is then asked `` appears
 
 ![Enter name](images/gamereulsandchoose.png)
 

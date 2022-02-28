@@ -314,11 +314,15 @@ def get_bomb():
         print(f'You have {bombs_left} and have sunk {num_ships_sunk} ships so far')
         position_bomb = input(message)
         position_bomb = position_bomb.upper()
-        if len(position_bomb) <= 0 or len(position_bomb) > 2:
+        if len(position_bomb) == 2:
+            row = position_bomb[0]
+            col = position_bomb[1]
+        elif len(position_bomb) == 3:
+            row = position_bomb[0]
+            col = position_bomb[-2:]
+        else:
             print("Error: Please enter only one row and column such as A3")
             continue
-        row = position_bomb[0]
-        col = position_bomb[1]
         if (not row.isalpha() or not col.isnumeric()):
             print("Error: Invalid entry")
         col = int(col)
