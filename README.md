@@ -67,29 +67,24 @@ The user can vary the difficulty level of the game. This is done by varying the 
 
 * A terminal with the title `Battleships` and `Enter your name:`
 
-![Enter name](docs/images/name_input.jpg)
+![Enter Name](docs/images/name_input.jpg)
 
-* Once the User name has been entered, the User is then asked `` appears
+* Once the User name has been entered, the User is then asked `Please enter the grid size between 8 & 15:`
 
-![Enter name](images/gamereulsandchoose.png)
+![Grid Size](docs/images/enter_name.jpg)
 
-* The User has the option to choose the highest number they wish
+* Once the user enters the grid size - they are presented with the grid with ships hidden.
 
-![Enter name](images/enterhighnumber.png)
+![Grid Display](docs/images/grid_display.jpg)
 
 
-* The game starts with `Make a guess between 1 and (number chosen)`
+* The game starts with by the user entering the co-ordinates of where they want to drop the first bomb. There are various checks on the inputted co-ordinates like whether the row is a [letter and colum is a number](docs/images/invalid_entry.jpg). It also checks whether a bomb has been thrown at that co-ordinate before and [prompts user for another position](docs/images/already_thrown_a_bomb.JPG) if it has. 
 
-![Enter name](images/Makeaguess.png)
+* If the user [hits a ship](docs/images/ship_hit.jpg), a message is displayed and the co-ordinate is marked with an 'X' in red font. If the user [misses a ship](docs/images/missed-ship.jpg), a message is displayed and the co-ordinate is marked with an '#' in yellow font.
 
-* The User makes a guess, and the game checks if it is correct,
-    If the User makes an incorrect guess, they lose a life and must guess again
+* If the User sinks a ships, the ship name is displayed. 
 
-![Enter name](images/guesscount.png)
-
-* If the User has run out of guesses, `Sorry, you ran out of guesses` AI tells the User the number and the game moves to AI guessing
-
-![Enter name](images/Outofguesses.png)
+![Ship name](docs/images/you_sunk_a_ship.JPG)
 
 * If the User made the correct guess, they win and the turn moves to AI guessing
 
