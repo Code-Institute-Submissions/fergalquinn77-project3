@@ -63,11 +63,11 @@ The user can vary the difficulty level of the game. This is done by varying the 
     * The users score is recorded and they get feedback on whether they got the top score or not
 
 ### Gameplay components:
-#### User vs AI
+#### User vs Computer
 
-* A terminal with the title `Numberex` and `Enter your name:`
+* A terminal with the title `Battleships` and `Enter your name:`
 
-![Enter name](images/entername.png)
+![Enter name](docs/images/name_input.jpg)
 
 * Once the User name has been entered, the User is then presented with game rules
     and `Please choose upper limit` appears
