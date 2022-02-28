@@ -323,8 +323,12 @@ def get_bomb():
         else:
             print("Error: Please enter only one row and column such as A3")
             continue
-        if (not row.isalpha() or not col.isnumeric()):
+        if (not col.isnumeric()):
             print("Error: Invalid entry")
+            continue
+        if (not row.isalpha()):
+            print("Error: Invalid entry")
+            continue
         col = int(col)
         if (row not in alphabet) or (not 0 <= col <= grid_size-1):
             print("Error: Your choice was off the grid")
