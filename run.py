@@ -311,6 +311,7 @@ def get_bomb():
     within_grid = False
     while within_grid is False:
 
+        print(f'You have {bombs_left} and have sunk {num_ships_sunk} ships so far')
         position_bomb = input(message)
         position_bomb = position_bomb.upper()
         if len(position_bomb) <= 0 or len(position_bomb) > 2:

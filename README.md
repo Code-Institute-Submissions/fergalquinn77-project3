@@ -1,31 +1,439 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# PORTFOLIO PROJECT - 3
 
-Welcome fergalquinn77,
+# BATTLE SHIPS
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+## PURPOSE
 
-## Reminders
+'Battleships' is the well known game which is strategy type guessing game. It is played on ruled grids (paper or board) on which each player's fleet of warships are marked. The locations of the fleets are concealed from the other player. Players alternate turns calling "shots" at the other player's ships, and the objective of the game is to destroy the opposing player's fleet.
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+The project has been developed using the Python programming language.
 
-## Creating the Heroku app
+* Here is a link to the [final project]https://battleshipscifq.herokuapp.com/)
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+## DIFFICULTY LEVEL
 
-1. `heroku/python`
-2. `heroku/nodejs`
+The user can vary the difficulty level of the game. This is done by varying the grid-size. The lower the grid size, the lower the difficulty. The user can choose grid size of 8-15 (15 being the most difficult). 
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
 
-Connect your GitHub repository and deploy as normal.
+#  
+## CONTENTS
 
-## Constraints
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+- [USER STORIES](#user-stories)
+- [FEATURES](#features)
+    - [Gameplay Components](#gameplay-components)
+        - [User vs AI](#user-vs-ai)
+        - [AI vs User](#ai-vs-user)
+    - [Future Features](#future-features)
+    - [Images](#images)
+    - [Typography](#typography)
+- [TESTING](#testing)
+    - [User story testing](#user-story-testing)
+    - [Validation](#validation)
+        - [PEP8](#pep8-online-validation)
+    - [Manual testing](#manual-testing)
+    - [Solved bugs and errors](#solved-bugs-and-errors)
+    - [Unsolved bugs and errors](#unsolved-bugs-and-errors)
+- [TECHNOLOGIES](#technologies)
+    - [Development](#development)
+    - [Languages used](#languages-used)
+    - [Libraries used](#libraries-used)
+- [DEPLOYMENT](#deployment)
+- [CREDITS AND REFERENCES](#credits-and-references)
+- [ACKNOWLEDGEMENTS](#acknowledgements)
 
------
-Happy coding!
+#
+
+## USER STORIES
+
+* As a User, I want the game to have varying difficulty
+* As a User, I want the option to see how how many bombs I've left and how many ships are sunk
+* As a User, I want to see how I performed compared to other users
+* As a User, I want the option to play again
+
+## FEATURES
+
+* The Features I want the game to have are:
+    * Allow the User to guess a number between 1 and (a number chosen by the User)
+    * To give an aspect of difficulty with 5 'lives' or attempts
+    * If either game is lost or finished, the User will be presented with a restart game option
+    * To provide a game where the User guesses the AI number and the AI then has a chance to guess 
+        the User's number
+    * Make sure any User input is validated to prevent improper value input
+
+### Gameplay components:
+#### User vs AI
+
+* A terminal with the title `Numberex` and `Enter your name:`
+
+![Enter name](images/entername.png)
+
+* Once the User name has been entered, the User is then presented with game rules
+    and `Please choose upper limit` appears
+
+![Enter name](images/gamereulsandchoose.png)
+
+* The User has the option to choose the highest number they wish
+
+![Enter name](images/enterhighnumber.png)
+
+
+* The game starts with `Make a guess between 1 and (number chosen)`
+
+![Enter name](images/Makeaguess.png)
+
+* The User makes a guess, and the game checks if it is correct,
+    If the User makes an incorrect guess, they lose a life and must guess again
+
+![Enter name](images/guesscount.png)
+
+* If the User has run out of guesses, `Sorry, you ran out of guesses` AI tells the User the number and the game moves to AI guessing
+
+![Enter name](images/Outofguesses.png)
+
+* If the User made the correct guess, they win and the turn moves to AI guessing
+
+![Enter name](images/userwin.png)
+
+### AI vs User
+
+* The User now thinks of a number between 1 and (original number chosen)
+* The AI asks the User `..Is your number (AI Guess)?`
+
+![Enter name](images/AIfirstguess.png)
+
+* If the User thinks it is too high, press `h`
+
+![Enter name](images/AIguesstoohigh.png)
+
+* if too high, AI guesses again
+* If the User thinks it is too low, press `l`
+
+![Enter name](images/AIguesstoolow.png)
+
+* If too low, AI guesses again
+* If the User thinks the AI guess is correct, press `c`
+
+![Enter name](images/AIguesscorrect.png)
+
+* If correct, AI shows off by telling you they won
+* Option for `Do you want to restart the game [Y/N]` appears
+* If the User enters `y`, A welcome back message appears and
+    game restarts to `Make a guess between 1 and (number chosen)`
+
+![Enter name](images/gamerestart.png)
+
+* If the User enters `n`, Game ends with `Thank you for playing Numberex!`
+
+![Enter name](images/Thanksforplaying.png)
+### Future features:
+
+* Add AI Guesses (lives) left
+* Add an option to choose between AI vs User or User vs AI
+* Add how many lives the User or AI had left once correctly guessed the number
+
+
+### Images
+
+* There is one background image, for aesthetics only
+    [IStockphoto](https://www.istockphoto.com/search/2/image?phrase=numbers)
+
+### Typography
+
+* The project uses [Pyfiglet](http://www.figlet.org/examples.html) for the ascii art (title)
+* Otherwise, Standard terminal font, cannot be changed
+# 
+
+# TESTING
+
+## User story testing
+
+* `As a User, I want the game to have varying difficulty`:
+    *  After the User inputs his/her name, The option to choose `highest number` will appear to
+        provide a personalised level of difficulty. Outcome: `Fulfilled.`
+* `As a User, I want to easily understand the main purpose of the game`:
+    * Once the User has entered his/her name, and made a choice of difficulty, 
+        there will be a paragraph on what the game entails. Outcome: `Fulfilled.`
+* `As a User, I want a choice of games`:
+    * I have provided two games that run consecutively,
+        First: User to guess the AI number
+        Second: AI to guess User number. Outcome: `Fulfilled.`
+* `As a User, I want to be able to see how many lives I have left`:
+    * After each guess from the User, the terminal will print how many lives (guesses)
+        the User has remaining, counting down from five. Outcome: `Fulfilled.`
+* `As a User, I want the option to play again`:
+    * I have provided an option at the end of the game that asks 
+        `Do you want to restart the game? [Y/N]`
+        If the User inputs `y`, the game restarts to 
+        the User vs AI with the original input difficulty. 
+        If the User inputs `n` the game ends with a message 
+        `Thank you for playing Numberex!`. Outcome: `Fulfilled.`
+
+## Validation
+### PEP8 Online Validation
+
+<details>
+<summary>PEP8 Screenshot Results for game run file</summary>
+<br>
+
+![PEP8 Results - run.py](images/PEP8.png)
+</details>
+
+## Manual testing
+
+- Upon loading the game screen terminal:
+    - The User is greeted with `Enter your name: `, Although it is out of my power for a User to input random letters or 
+        characters rather than a name,
+        I have made sure that any spaces before or after the input are stripped after the User presses enter. For example:
+        
+        ![.strip()](images/usernamestrip.jpg)
+    
+    - After enter is pressed, the Users name appears without whitespace along with the game rules
+        This always prints at the start of the game after the User has input a name and pressed enter
+    - At the same time the game rules print out to the terminal, a statement appears to enable the User to choose a high 
+        number in order to make the game more difficult:
+        
+        ![Upper limit validation](images/upperlimitvalidation.png)
+    
+    - As you can see in the image above, I have input several letters, characters and combinations of both including numbers, 
+        validation always catches the fact the input is not a number or integer, it prints the statement 
+        `Please select a valid number` and then re-prints the statement `Please choose an upper limit: `
+    - When the correct value (number) is input into the terminal for `Please choose an upper limit: ` i.e. `10`, 
+        enter is pressed and a new line with message `Make a guess at a number between 1 and 10:`
+        - I have input words, strings of words, individual letters, characters, and pressed enter, but with validation, 
+            I cannot input anything other than a number. A message appears `Sorry, Chris, That is not a number!`:
+        
+        ![Sorry not a number](images/guessentryvalidation.png)
+    
+    - For the sake of this test the upper limit is 10. If I try to input a number outside of the set limits (1 to 10), 
+        in this case `15000`, the issue is caught with the following message `Please choose a number between 1 and 10:`
+
+        ![outside of limits](images/outsideofguesslimits.png)
+
+    - When the correct value is entered for this part of the game (a guess between 1 and 10) but the guess is too low,
+        the game sees that the number is too low and prints out the statement `Sorry Chris, guess a little higher!`
+    - The terminal prints again `Make a guess at a number between 1 and 10:`
+    - The code then recognises one guess has been made out of five and prints out `..Guesses Remaining: 4`
+    - When the correct value is entered but the guess is too high,
+        the game sees that the number is too high and prints out the statement `Sorry Chris, guess a little lower!`
+    - The terminal prints again `Make a guess at a number between 1 and 10:`
+    - The code then recognises two guesses have been made out of five and prints out `..Guesses Remaining: 3`
+    
+    ![guesses](images/Guessesremainingtest.png)
+    
+    - If I keep inputting the same number until the lives have run out, The terminal prints, 
+        - `Sorry you ran out of guesses, my number was: (example number)`
+        - Then the game moves to the AI guessing my number.
+    - But, if I guess the correct number within the limits, I win with a message 
+        - `Well done, You guessed the correct number: (Example number)`
+    
+- The next part of the game is, I have to guess the number the AI is thinking of,
+    - `My Turn!!.. Is your number (in this case) 9?`
+            - `too high(H) too low(L) correct(C)`
+    - For this test I forced the AI higher by the input of `too low(L)`
+    - The AI printed:
+    - `My Turn!!.. Is your number 10?`
+        - `too high(H) too low(L) correct(C)`
+    - Again, my input was `too low(L)`
+        - With validation in my code I am able to catch a user forcing past the upper and lower limits with a 
+            try/except rule and the following happens:
+        
+        ![are you sure](images/areyousure.png)
+    
+    - If I input `too low(L)` one more time, the code is written to prevent cheating and the terminal prints a statement 
+        - `I think you are cheating I am not playing this game with you anymore!`
+        
+        ![cheating](images/cheating.png)
+    
+    - This test is also the same when entering `too high(H)` and trying to force the AI past 1 and lower
+    - The game then ends with a final statement `Chris, Do you want to restart the game? [Y/N]`
+        - If I input anything other than `y` or `n`, input validation has been written to prevent an invalid character 
+            or letter apart from `y` or `n`
+    - When I type `y`, The code has stored the name to reinsert into the print statement `Welcome back, (name)!`
+    - The game then loops back to the `User vs AI` But this time there is no option to input a higher number,
+        - This is something I would like to implement for future development of the game
+    - When I type `n` The game simply ends with message `Thankyou for playing Numberex!`
+    - For the sake of testing, If none of the above is true, (no cheating, no incorrect values etc) the AI has 
+        infinite guesses to find the number I am thinking of
+        - This is a flaw I came across while carrying out manual testing, I would like to in future development (with more time), 
+            include AI guess limit function
+    - If the number I am thinking of matches the AI guess, I input `correct(c)` and I am greeted with a message:
+        - `HAHA!! I guessed (number) The number you were thinking of.. I WIN!!`
+        
+        ![correctguess2](images/AIguesscorrect.png)
+    
+    - And finally the option to restart the game appears, If I press `y`, the loop starts again, if I press `n`, the game finishes
+        with the message `Thank you for playing Numberex!`
+
+## Solved bugs and errors
+
+* Throughout the development of this project, several automated (flake8) errors have been fixed i.e.
+    - Indentation errors
+    - Undefined variable name
+    - Not enough whitespace between functions
+    - No new line at end of file
+    - Invalid syntax errors
+    - Imported but unused errors
+    
+
+* Found an issue with `AI vs User`, where there was a double input of the User controls of `H L or C`, for example,
+    if the User is thinking of 5 and AI guessed 4, the User would input H for higher, but two H H would appear on seperate lines.
+    - This was fixed by removing a missed duplicate print() statement.
+* Found an issue with restart game function, the option to restart the game would appear during the `AI vs User` game,
+    or wouldn't appear at all.
+    - This was a complete oversight, I had simply placed the function at the end of the file, logically, the `end_game()` function needed to be placed above `user_guess` and `computer_guess` functions in order to be called after the game ended.
+    - Importing `sys` for `sys.exit()` also cured the issue of the game not ending in the same function.
+* Any duplicate or unused code, comments etc have been removed
+* Any irrelevant space in between code has been removed
+
+## Unsolved bugs and errors
+
+* When the game comes to an end and the User requests to restart the game, the game loops back to User vs AI, 
+    without the possibility of inputting a new number for difficulty purposes. The game does run as normal apart from this issue
+* All previously known errors during the development process have been resolved
+
+
+#
+# TECHNOLOGIES
+
+## DEVELOPMENT
+
+* The project was written and tested using [Gitpod](https://gitpod.io/)
+* The project uses [Github](https://github.com/) for utilising git version control
+* The project was deployed via [Heroku](https://heroku.com/)
+
+
+## LANGUAGES USED
+
+* The project was written using [PYTHON3](https://en.wikipedia.org/wiki/Python_(programming_language))
+
+## LIBRARIES USED
+
+* Pyfiglet
+    - This library was used to create the ASCII art for the title upon loading the game
+        
+* Random
+    - randint was used to generate a random number for the game
+
+* Sys
+    - sys was imported for the exit and restart function of the game
+#
+# DEPLOYMENT
+
+## Heroku
+
+* This Game was deployed using [Heroku](https://heroku.com/) with the following the steps:
+
+1. Navigate to [Heroku.com](https://www.heroku.com/) and log-in or create a new account.
+2. On the top right hand side, click the 'New' button.
+3. Inside the dropdown menu, select 'Create new app'.
+4. Create a new name for your app (making sure the name chosen is available) in this case it is `numberex`.
+    App names can only be in lower-case letters, numbers and dashes.
+5. Select your region, in this case, `Europe`.
+6. Click on the `Create App` button.  
+7. This will create your app in Heroku and take you to the [Heroku](https://heroku.com/) dashboard.
+8. Navigate to the settings tab and scroll down to the button `Reveal Config vars`.
+9. Replace the word `KEY` and enter `PORT` and then replace the word `VALUE` and enter `8000` then click on the `Add` button.
+10. Below `Config vars` is `Buildpacks`. Click the `Add Buildpack` button.
+11. In the pop up window, select `python` and save changes.
+12. Repeat this again but this time selecting `node.js` and save the changes.
+13. It is `important` to make sure the buildpacks are in the correct order 
+    with `Python` being at the top and `node.js` bottom. If they are not in the correct order, you can drag them into the right order.
+14. Next, navigate to the `Deploy` tab at the top left side.
+15. Select `Github, 'connect to github'` as the deployment method.
+16. Search for the Github Repository in the search field (in this case `Python_PP3`) and click `Search`.
+17. When the search is complete, click `connect`.
+18. Once your repository is connected to [Heroku](https://heroku.com/), Click the `Enable Automatic Deploys` button for automatic deployment.
+19. Alternatively you can manually deploy by selecting a branch to deploy from and clicking `Deploy Branch`.
+20. If you choose to `Enable Automatic Deploys`, [Heroku](https://heroku.com/) will build a new version of the app when a change to 
+    `gitpod` is pushed to `Github`.  
+21. Manual deployment allows you to update the app whenever you click `Deploy Branch`.
+    In the case of this project, I chose to `Enable Automatic Deploys` to ensure the code was deployed straight away at each push from `Gitpod`.
+22. Once the build process is complete (this can take a few seconds) you will then be able to view the live app by clicking on the button `View`
+    below `Your app was successfully deployed`.
+
+## Version control
+
+* These commands were used for version control during project:
+
+    * git add `example filename` - to add files before committing
+    * git commit -m `"example message"` - to commit changes to the local repository
+    * git push - to push all committed changes to the GitHub repository
+    * git branch - to see which branch currently working on
+    * git pull - to pull all code into main branch once the feature branch had been merged and deleted
+    * git status - to see if the branch currently working on is upto date or if the are any unstaged
+    * git log --oneline - to see the last commit
+    * git commit --amend - to amend the most recent commit message
+
+## How to create a branch/Tag of main:
+
+If you need to `BRANCH` off of the main repository:
+
+1. If you have not already, login in to [GitHub](www.github.com) and go to https://github.com/Chr15w1986/Python_PP3
+2. On the left side of the screen underneath the nav links, click the drop down box `Main`
+3. Inside the box you will see `Create new branch/tag`
+4. Inside the text box, enter the new branch or tag name i.e., `Features`
+5. Below the Branches Tags tab, you will see `Create branch: Features from "main"`
+6. Click on `Create branch: Features from "main"` and you will be taken to the new branch page you just called `Features`
+
+## How to fork a repository:
+
+If you need to `FORK` a repository:
+
+1. If you have not already, login in to [GitHub](www.github.com) and go to https://github.com/Chr15w1986/Python_PP3
+2. In the top right corner, click `Fork`
+3. The next page will be the forked version of https://github.com/Chr15w1986/Python_PP3 but in your own repository
+## How to clone a repository:
+
+If you need to make a clone of this repository:
+
+1. Fork the repository https://github.com/Chr15w1986/Python_PP3 using the steps above
+2. Above the file list, click `Code` (Usually green at the top right of the code window)
+3. Choose if you want to clone using HTTPS, SSH or GitHub CLI, then click the copy button to the right
+4. Open Git Bash
+5. Change the directory to where you want your clone to go (your own github)
+6. Type `git clone` and then paste the URL you copied in step 4
+7. Press `Enter` to create your clone
+
+## How to make a local clone:
+
+If you need to make a local clone:
+
+1. If you have not already, login in to [GitHub](www.github.com) and go to https://github.com/Chr15w1986/Python_PP3
+2. Under the repository name, above the list of files, click `Code`
+3. Here you will have two options, `Clone` or `Download` the repository
+4. You should close the repository using HTTPS, clicking on the icon to copy the link
+5. At this point, you can launch the `Gitpod workspace` or choose your own directory
+5. Open Git Bash
+6. Change the current working directory to the new location of where you want the cloned directory to be
+7. Type git clone and then paste the URL you copied in step 4
+8. Press Enter, to create your local clone to your chosen directory
+
+#
+## CREDITS AND REFERENCES
+
+### IMAGE
+
+* Background image of numbers collage, [IStockphoto](https://www.istockphoto.com/search/2/image?phrase=numbers)
+
+### CODE
+
+* [W3Schools](https://www.w3schools.com/) for an interesting read on python functions and how they can be implemented
+* [Stackoverflow](https://stackoverflow.com/questions/57409696/imported-but-unused-in-python) For an unused import error I was experiencing
+* [Stackoverflow](https://stackoverflow.com/questions/27076239/adding-scoring-system-to-a-number-guessing-game-including-play-again)
+    For a rough guide on how to implement a restart game function
+
+#
+## ACKNOWLEDGEMENTS:
+
+- Code institute for the amazing Tutors on the course
+- My brilliant Mentor Ben Kavanagh, [BAK2K3](https://github.com/BAK2K3) for his advice on my code, pushing me back on track 
+    when I start to lose faith, taking time out of his own day and duties to answer ALL of my questions with utter perfection!
+- Dave Horrocks [DaveyJH](https://github.com/daveyjh), again! for giving me time out of his own studies, for his patience, helping me above and beyond.
+- Shellie Downie [ShellieD](https://github.com/shellieD), for her support, pointing out an obvious issue with my code so quickly.. TWICE! after hours of staring at it and looking straight over the problem.
+- My family for their support, patience and testing!!
+- My wonderful fiancée for being my personal spell checker/grammer police and for listening to me when I need to rant!
+- Everybody on Slack for tips, advice, quick fixes and support
+
+#### RETURN TO THE [TOP](#numberex)
