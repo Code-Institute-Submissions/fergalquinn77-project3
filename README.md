@@ -54,13 +54,13 @@ The user can vary the difficulty level of the game. This is done by varying the 
 
 ## FEATURES
 
-* The Features I want the game to have are:
-    * Allow the User to guess a number between 1 and (a number chosen by the User)
-    * To give an aspect of difficulty with 5 'lives' or attempts
-    * If either game is lost or finished, the User will be presented with a restart game option
-    * To provide a game where the User guesses the AI number and the AI then has a chance to guess 
-        the User's number
-    * Make sure any User input is validated to prevent improper value input
+* The game features are:
+    * The user plays against a computer. The computer has 10 ships that are positioned randomly on the grid
+    * The user has 50 bombs to use in the game
+    * The user can set the level of difficulty by the size of the grid system. This is inputted at the start of game. The lower the grid-size, the easier the game.
+    * The ship names are actual USS ship names
+    * The game is over when the user runs out of bombs or all ships are sunk (whichever is first)
+    * The users score is recorded and they get feedback on whether they got the top score or not
 
 ### Gameplay components:
 #### User vs AI
