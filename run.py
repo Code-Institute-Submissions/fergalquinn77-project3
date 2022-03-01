@@ -392,9 +392,24 @@ def check_game_over():
         print(game_over_message)
         record_game_stats()
 
+def reset_grid():
+    for r in range(grid_size):
+        for c in range(grid_size):
+            grid[r][c]="~"
 
 def reset_game():
-    main()
+    global num_ships_sunk
+    global bombs_left
+    game_over=False
+    reset_grid()
+    bombs_left = 50
+    num_ships_sunk = 0
+    position_ships_on_grid()
+    print_grid_display(grid)
+    while game_over is False:
+        place_bomb()
+        print_grid_display(grid)
+        check_game_over()
 
 
 def start_new_game():
