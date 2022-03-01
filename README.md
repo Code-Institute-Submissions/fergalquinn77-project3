@@ -1,6 +1,6 @@
 # PORTFOLIO PROJECT - 3
 
-# BATTLE SHIPS
+# BATTLESHIPS
 
 ## PURPOSE
 
@@ -9,10 +9,7 @@
 The project has been developed using the Python programming language.
 
 * Here is a link to the [final project](https://battleshipscifq.herokuapp.com/)
-
-## DIFFICULTY LEVEL
-
-The user can vary the difficulty level of the game. This is done by varying the grid-size. The lower the grid size, the lower the difficulty. The user can choose grid size of 8-15 (15 being the most difficult).
+.
 
 #  
 ## CONTENTS
@@ -21,8 +18,7 @@ The user can vary the difficulty level of the game. This is done by varying the 
 - [USER STORIES](#user-stories)
 - [FEATURES](#features)
     - [Gameplay Components](#gameplay-components)
-        - [User vs AI](#user-vs-ai)
-        - [AI vs User](#ai-vs-user)
+        - [User vs Computer](#user-vs-computer)
     - [Future Features](#future-features)
     - [Images](#images)
     - [Typography](#typography)
@@ -46,7 +42,7 @@ The user can vary the difficulty level of the game. This is done by varying the 
 ## USER STORIES
 
 * As a User, I want the game that I can set the difficulty
-* As a User, I want the option to see how how many bombs I've left and how many ships are sunk
+* As a User, I want the option to see how many bombs I've left and how many ships are sunk
 * As a User, I want to see how I performed compared to other users
 * As a User, I want the option to play again
 
@@ -76,7 +72,7 @@ The user can vary the difficulty level of the game. This is done by varying the 
 ![Grid Display](docs/images/grid_display.jpg)
 
 
-* The game starts with by the user entering the co-ordinates of where they want to drop the first bomb. There are various checks on the inputted co-ordinates like whether the row is a [letter and colum is a number](docs/images/invalid_entry.jpg). It also checks whether a bomb has been thrown at that co-ordinate before and [prompts user for another position](docs/images/already_thrown_a_bomb.JPG) if it has. 
+* The game starts with by the user entering the co-ordinates of where they want to drop the first bomb. There are various checks on the inputted co-ordinates like whether the row is a [letter and column is a number](docs/images/invalid_entry.jpg). It also checks whether a bomb has been thrown at that co-ordinate before and [prompts user for another position](docs/images/already_thrown_a_bomb.JPG) if it has. 
 
 * If the user [hits a ship](docs/images/ship_hit.jpg), a message is displayed and the co-ordinate is marked with an 'X' in red font. If the user [misses a ship](docs/images/missed-ship.jpg), a message is displayed and the co-ordinate is marked with an '#' in yellow font.
 
@@ -93,7 +89,7 @@ The user can vary the difficulty level of the game. This is done by varying the 
 
 * Let the user choose the number of ships - this can increase the level of difficulty further.
 * Introduce a 'super bomb' that can wipe out one cell and all surrounding cells at a time (up to 9 cells). The user will have one 'super bomb'
-* At present, the user is advised at game end as to whether they got top score or not. I would like to have a leaderboard of the top ten scores
+* At present, the user is advised at game end as to whether they got top score or not. I would like to have a leader-board of the top ten scores
 
 
 ### Images
@@ -113,7 +109,7 @@ The user can vary the difficulty level of the game. This is done by varying the 
 
 * `As a User, I want the game that I can set the difficulty`:
     *  On starting the game, the user is asked to provide a grid size with the note that `You get the choose the grid size - the higher, the more difficult.`. 
-* `As a User, I want the option to see how how many bombs I've left and how many ships are sunk`:
+* `As a User, I want the option to see how many bombs I've left and how many ships are sunk`:
     * The user is displayed with the following message at the start of game - `You have 50 and have sunk 0 ships so far`. The message is updated after each bomb is used 
 * `As a User, I want to see how I performed compared to other users`:
     * At the end of the game, the user scores is calculated using the following formula - score = number of ships sunk x grid size. This adjusts the users score for difficulty
@@ -163,7 +159,7 @@ The user can vary the difficulty level of the game. This is done by varying the 
             ![bomb already](docs/images/bomb_already_thrown.jpg)
         
     - Once the game is over, the user is asked whether, they'd like to start another game of not - `Would you like to start again? Enter [Y/N]:`
-        - If the user enters invalid data - the user will be promtped to enter data again and a message is displayed with `Invalid entry - please try again`
+        - If the user enters invalid data - the user will be prompted to enter data again and a message is displayed with `Invalid entry - please try again`
            ![invalid data game end](docs/images/start_game_again_invalid_entry.jpg) 
     
     
@@ -178,20 +174,12 @@ The user can vary the difficulty level of the game. This is done by varying the 
     - Imported but unused errors
     
 
-* Found an issue with `AI vs User`, where there was a double input of the User controls of `H L or C`, for example,
-    if the User is thinking of 5 and AI guessed 4, the User would input H for higher, but two H H would appear on seperate lines.
-    - This was fixed by removing a missed duplicate print() statement.
-* Found an issue with restart game function, the option to restart the game would appear during the `AI vs User` game,
-    or wouldn't appear at all.
-    - This was a complete oversight, I had simply placed the function at the end of the file, logically, the `end_game()` function needed to be placed above `user_guess` and `computer_guess` functions in order to be called after the game ended.
-    - Importing `sys` for `sys.exit()` also cured the issue of the game not ending in the same function.
-* Any duplicate or unused code, comments etc have been removed
-* Any irrelevant space in between code has been removed
+* Found an issue with entering bomb co-ordinates for grid size greater than 10. This issue was solved by using a split on the list for co-ordinates with length 3 e.g. A10. The split was `col = position_bomb[-2:]`
+    
+* There were a number of errors showing the on PEP8 validation report that related to the number of characters on a row. These were solved with help from Ed on the Tutor support team and some articles on [codeingem](https://www.codingem.com/formatted-string-in-python/) and [flake8rules](https://www.flake8rules.com/rules/E131.html). 
 
 ## Unsolved bugs and errors
 
-* When the game comes to an end and the User requests to restart the game, the game loops back to User vs AI, 
-    without the possibility of inputting a new number for difficulty purposes. The game does run as normal apart from this issue
 * All previously known errors during the development process have been resolved
 
 
@@ -316,23 +304,12 @@ If you need to make a local clone:
 
 * Background image of numbers collage, [IStockphoto](https://www.istockphoto.com/search/2/image?phrase=numbers)
 
-### CODE
-
-* [W3Schools](https://www.w3schools.com/) for an interesting read on python functions and how they can be implemented
-* [Stackoverflow](https://stackoverflow.com/questions/57409696/imported-but-unused-in-python) For an unused import error I was experiencing
-* [Stackoverflow](https://stackoverflow.com/questions/27076239/adding-scoring-system-to-a-number-guessing-game-including-play-again)
-    For a rough guide on how to implement a restart game function
 
 #
 ## ACKNOWLEDGEMENTS:
 
-- Code institute for the amazing Tutors on the course
-- My brilliant Mentor Ben Kavanagh, [BAK2K3](https://github.com/BAK2K3) for his advice on my code, pushing me back on track 
-    when I start to lose faith, taking time out of his own day and duties to answer ALL of my questions with utter perfection!
-- Dave Horrocks [DaveyJH](https://github.com/daveyjh), again! for giving me time out of his own studies, for his patience, helping me above and beyond.
-- Shellie Downie [ShellieD](https://github.com/shellieD), for her support, pointing out an obvious issue with my code so quickly.. TWICE! after hours of staring at it and looking straight over the problem.
-- My family for their support, patience and testing!!
-- My wonderful fiancée for being my personal spell checker/grammer police and for listening to me when I need to rant!
-- Everybody on Slack for tips, advice, quick fixes and support
+- I once again made use of the great help from the Code institute Tutor team (Ed and Ger). 
+- My tutor Chris Quinn for his continued advice and guideance throughout.
 
-#### RETURN TO THE [TOP](#numberex)
+
+#### RETURN TO THE [TOP](#battleships)
