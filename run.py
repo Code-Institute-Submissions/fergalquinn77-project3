@@ -38,8 +38,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("project-3-battleships")
 
-num_ships = 4
-bombs_left = 50
+num_ships = 10
+bombs_left = 4
 grid = []
 num_ships_sunk = 0
 grid_size = 10
@@ -98,18 +98,18 @@ def get_grid_size():
     This function gets the grid size from the user.
     """
     global grid_size
-
+    global USER_NAME
+    USER_NAME = input("Please enter your name: \n")
     while True:
-        try:
-            global USER_NAME
-            USER_NAME = input("Please enter your name: \n")
-            grid_size = int(input(
-                "Please enter the grid size between 8 & 15: \n"))
-            if grid_size < 8 or grid_size > 15:
-                continue
-            break
-        except ValueError:
-            print('\nYou did not enter a valid integer')
+        grid_size = input("Please enter the grid size between 8 & 15: \n")
+        if not grid_size.isnumeric():
+            print("You did not enter a valid integer")
+            continue
+        if int(grid_size) < 8 or int(grid_size) > 15:
+            print("Grid size needs to be between 8 & 15")
+            continue
+        grid_size = int(grid_size)
+        break
 
 
 def create_initial_grid():
