@@ -8,13 +8,11 @@
 
 The project has been developed using the Python programming language.
 
-* Here is a link to the [final project]https://battleshipscifq.herokuapp.com/)
+* Here is a link to the [final project](https://battleshipscifq.herokuapp.com/)
 
 ## DIFFICULTY LEVEL
 
-The user can vary the difficulty level of the game. This is done by varying the grid-size. The lower the grid size, the lower the difficulty. The user can choose grid size of 8-15 (15 being the most difficult). 
-
-
+The user can vary the difficulty level of the game. This is done by varying the grid-size. The lower the grid size, the lower the difficulty. The user can choose grid size of 8-15 (15 being the most difficult).
 
 #  
 ## CONTENTS
@@ -86,56 +84,26 @@ The user can vary the difficulty level of the game. This is done by varying the 
 
 ![Ship name](docs/images/you_sunk_a_ship.JPG)
 
-* If the User made the correct guess, they win and the turn moves to AI guessing
+* The game finishes when the user either runs out of bombs or sinks all ships (whichever comes first). Then the user is provided feedback on how they did compared to users to date.
 
-![Enter name](images/userwin.png)
+![game over](docs/images/game_over_message.jpg)
 
-### AI vs User
 
-* The User now thinks of a number between 1 and (original number chosen)
-* The AI asks the User `..Is your number (AI Guess)?`
-
-![Enter name](images/AIfirstguess.png)
-
-* If the User thinks it is too high, press `h`
-
-![Enter name](images/AIguesstoohigh.png)
-
-* if too high, AI guesses again
-* If the User thinks it is too low, press `l`
-
-![Enter name](images/AIguesstoolow.png)
-
-* If too low, AI guesses again
-* If the User thinks the AI guess is correct, press `c`
-
-![Enter name](images/AIguesscorrect.png)
-
-* If correct, AI shows off by telling you they won
-* Option for `Do you want to restart the game [Y/N]` appears
-* If the User enters `y`, A welcome back message appears and
-    game restarts to `Make a guess between 1 and (number chosen)`
-
-![Enter name](images/gamerestart.png)
-
-* If the User enters `n`, Game ends with `Thank you for playing Numberex!`
-
-![Enter name](images/Thanksforplaying.png)
 ### Future features:
 
-* Add AI Guesses (lives) left
-* Add an option to choose between AI vs User or User vs AI
-* Add how many lives the User or AI had left once correctly guessed the number
+* Let the user choose the number of ships - this can increase the level of difficulty further.
+* Introduce a 'super bomb' that can wipe out one cell and all surrounding cells at a time (up to 9 cells). The user will have one 'super bomb'
+* At present, the user is advised at game end as to whether they got top score or not. I would like to have a leaderboard of the top ten scores
 
 
 ### Images
 
 * There is one background image, for aesthetics only
-    [IStockphoto](https://www.istockphoto.com/search/2/image?phrase=numbers)
+    [Ultra Board Games](https://www.ultraboardgames.com/battleship/gfx/banner.jpg)
 
 ### Typography
 
-* The project uses [Pyfiglet](http://www.figlet.org/examples.html) for the ascii art (title)
+* The project uses the [Art](https://pypi.org/project/art/) and [Colored](https://pypi.org/project/colored/) libraries for the ascii art and font color
 * Otherwise, Standard terminal font, cannot be changed
 # 
 
@@ -143,19 +111,13 @@ The user can vary the difficulty level of the game. This is done by varying the 
 
 ## User story testing
 
-* `As a User, I want the game to have varying difficulty`:
-    *  After the User inputs his/her name, The option to choose `highest number` will appear to
-        provide a personalised level of difficulty. Outcome: `Fulfilled.`
-* `As a User, I want to easily understand the main purpose of the game`:
-    * Once the User has entered his/her name, and made a choice of difficulty, 
-        there will be a paragraph on what the game entails. Outcome: `Fulfilled.`
-* `As a User, I want a choice of games`:
-    * I have provided two games that run consecutively,
-        First: User to guess the AI number
-        Second: AI to guess User number. Outcome: `Fulfilled.`
-* `As a User, I want to be able to see how many lives I have left`:
-    * After each guess from the User, the terminal will print how many lives (guesses)
-        the User has remaining, counting down from five. Outcome: `Fulfilled.`
+* `As a User, I want the game that I can set the difficulty`:
+    *  On starting the game, the user is asked to provide a grid size with the note that `You get the choose the grid size - the higher, the more difficult.`. 
+* `As a User, I want the option to see how how many bombs I've left and how many ships are sunk`:
+    * The user is displayed with the following message at the start of game - `You have 50 and have sunk 0 ships so far`. The message is updated after each bomb is used 
+* `As a User, I want to see how I performed compared to other users`:
+    * At the end of the game, the user scores is calculated using the following formula - score = number of ships sunk x grid size. This adjusts the users score for difficulty
+    * The users score is then compared to all previous users and they are informed whether they got the top score or not 
 * `As a User, I want the option to play again`:
     * I have provided an option at the end of the game that asks 
         `Do you want to restart the game? [Y/N]`

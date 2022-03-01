@@ -39,7 +39,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("project-3-battleships")
 
 num_ships = 10
-bombs_left = 50
+bombs_left = 4
 grid = []
 num_ships_sunk = 0
 grid_size = 10
@@ -393,31 +393,51 @@ def check_game_over():
         record_game_stats()
 
 
+def reset_game():
+    main()
+
+
+def start_new_game():
+    while True:
+        start_game_inp = input("Would you like to start a new game? Enter Y/N: ")
+        if(start_game_inp == "Y"):
+            reset_game()
+            break
+        elif(start_game_inp == "N"): 
+                break
+        else: 
+            print("Invalid entry")
+
+
 def record_game_stats():
     """
     Record game stats to google spreadsheet when game is over.
     Provide feedback to user on how they did.
     """
-    user_stats = [bombs_left, num_ships_sunk, USER_NAME]
+    player_score = num_ships_sunk*grid_size
+    user_stats = [bombs_left, num_ships_sunk, USER_NAME, player_score]
     print("Let's see how you did...\n")
     battleships_worksheet = SHEET.worksheet("battleships")
-    battleships_worksheet.append_row(user_stats)
     all_user_stats = SHEET.worksheet("battleships").get_all_values()
     number_players = len(all_user_stats)-1
     best_score = 0
     for i in range(1, len(all_user_stats)):
-        if int(all_user_stats[i][1]) >= best_score:
-            best_score = int(all_user_stats[i][1])
+        if int(all_user_stats[i][3]) > best_score:
+            best_score = int(all_user_stats[i][3])
             best_score_user = all_user_stats[i][2]
     print(
-        "The top score to date (number of ships sunk) out of",
-        number_players, "players to date is", best_score)
-    print("You scored ", num_ships_sunk)
-    if(num_ships_sunk == best_score):
+        "The top score to date out of",
+        number_players, "players to date is", best_score, "by", best_score_user)
+    print("You scored ", player_score)
+    if(player_score > best_score):
         print("Congrats, you are the new leader")
+        battleships_worksheet.append_row(user_stats)
+        start_new_game()
     else:
         print("Maybe try again to get the top score!")
-
+        battleships_worksheet.append_row(user_stats)
+        start_new_game()
+    
 
 def main():
     """
