@@ -120,11 +120,11 @@ The user can vary the difficulty level of the game. This is done by varying the 
     * The users score is then compared to all previous users and they are informed whether they got the top score or not 
 * `As a User, I want the option to play again`:
     * I have provided an option at the end of the game that asks 
-        `Do you want to restart the game? [Y/N]`
-        If the User inputs `y`, the game restarts to 
+        `Would you like to start a new game? Enter [Y/N]:`
+        * If the User inputs `Y`, the game restarts and the grid is 
         the User vs AI with the original input difficulty. 
-        If the User inputs `n` the game ends with a message 
-        `Thank you for playing Numberex!`. Outcome: `Fulfilled.`
+        * If the User inputs `N` the game ends with a message 
+        `Thank you for playing Battleships!`.
 
 ## Validation
 ### PEP8 Online Validation
@@ -266,14 +266,12 @@ The user can vary the difficulty level of the game. This is done by varying the 
 
 ## LIBRARIES USED
 
-* Pyfiglet
-    - This library was used to create the ASCII art for the title upon loading the game
+* Colored
+    - This is used to color some of the text. This makes the grid more readable to the user
         
-* Random
-    - randint was used to generate a random number for the game
+* Art
+    - This library was used to create the ASCII art for the title upon loading the game
 
-* Sys
-    - sys was imported for the exit and restart function of the game
 #
 # DEPLOYMENT
 
@@ -284,7 +282,7 @@ The user can vary the difficulty level of the game. This is done by varying the 
 1. Navigate to [Heroku.com](https://www.heroku.com/) and log-in or create a new account.
 2. On the top right hand side, click the 'New' button.
 3. Inside the dropdown menu, select 'Create new app'.
-4. Create a new name for your app (making sure the name chosen is available) in this case it is `numberex`.
+4. Create a new name for your app (making sure the name chosen is available) in this case it is `battleshipscifq`.
     App names can only be in lower-case letters, numbers and dashes.
 5. Select your region, in this case, `Europe`.
 6. Click on the `Create App` button.  
@@ -337,14 +335,14 @@ If you need to `BRANCH` off of the main repository:
 
 If you need to `FORK` a repository:
 
-1. If you have not already, login in to [GitHub](www.github.com) and go to https://github.com/Chr15w1986/Python_PP3
+1. If you have not already, login in to [GitHub](www.github.com) and go to https://github.com/fergalquinn77/project3.git
 2. In the top right corner, click `Fork`
-3. The next page will be the forked version of https://github.com/Chr15w1986/Python_PP3 but in your own repository
+3. The next page will be the forked version of https://github.com/fergalquinn77/project3.git but in your own repository
 ## How to clone a repository:
 
 If you need to make a clone of this repository:
 
-1. Fork the repository https://github.com/Chr15w1986/Python_PP3 using the steps above
+1. Fork the repository https://github.com/fergalquinn77/project3.git using the steps above
 2. Above the file list, click `Code` (Usually green at the top right of the code window)
 3. Choose if you want to clone using HTTPS, SSH or GitHub CLI, then click the copy button to the right
 4. Open Git Bash
@@ -356,7 +354,7 @@ If you need to make a clone of this repository:
 
 If you need to make a local clone:
 
-1. If you have not already, login in to [GitHub](www.github.com) and go to https://github.com/Chr15w1986/Python_PP3
+1. If you have not already, login in to [GitHub](www.github.com) and go to https://github.com/fergalquinn77/project3.git
 2. Under the repository name, above the list of files, click `Code`
 3. Here you will have two options, `Clone` or `Download` the repository
 4. You should close the repository using HTTPS, clicking on the icon to copy the link

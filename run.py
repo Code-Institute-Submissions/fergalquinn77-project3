@@ -38,8 +38,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("project-3-battleships")
 
-num_ships = 10
-bombs_left = 4
+num_ships = 4
+bombs_left = 50
 grid = []
 num_ships_sunk = 0
 grid_size = 10
@@ -306,13 +306,19 @@ def get_bomb():
     and then pass the co-ordinates on the position_bomb function.
     """
     global alphabet
-    message = f'Enter row (A-{alphabet[grid_size-1]}) and column (0-{grid_size}) such as G7: '
+    msg_get_position = (
+        f'Enter row (A-{alphabet[grid_size-1]}) and column (0-{grid_size})'
+        f' such as G7: '
+        )
     alphabet = alphabet[0: grid_size]
     within_grid = False
     while within_grid is False:
-
-        print(f'You have {bombs_left} and have sunk {num_ships_sunk} ships so far')
-        position_bomb = input(message)
+        msg_bombs_left = (
+            f'You have {bombs_left} and '
+            f'have sunk {num_ships_sunk} ships so far'
+            )
+        print(msg_bombs_left)
+        position_bomb = input(msg_get_position)
         position_bomb = position_bomb.upper()
         if len(position_bomb) == 2:
             row = position_bomb[0]
@@ -392,15 +398,24 @@ def check_game_over():
         print(game_over_message)
         record_game_stats()
 
+
 def reset_grid():
+    """
+    Resets the grid to be all water before positioning ships
+    """
     for r in range(grid_size):
         for c in range(grid_size):
-            grid[r][c]="~"
+            grid[r][c] = "~"
+
 
 def reset_game():
+    """
+    If user chooses to restart game at end, this resets the grid and resets
+    the stats
+    """
     global num_ships_sunk
     global bombs_left
-    game_over=False
+    game_over = False
     reset_grid()
     bombs_left = 50
     num_ships_sunk = 0
@@ -413,15 +428,20 @@ def reset_game():
 
 
 def start_new_game():
+    """
+    Executes at end of game. Asks user if they'd like to start a new game.
+    """
     while True:
-        start_game_inp = input("Would you like to start a new game? Enter Y/N: ")
+        start_game_inp = input("Would you like to start again? Enter [Y/N]: ")
+        start_game_inp = start_game_inp.upper()
         if(start_game_inp == "Y"):
             reset_game()
             break
-        elif(start_game_inp == "N"): 
+        elif(start_game_inp == "N"):
+                print("Thank you for playing Battleships!")
                 break
-        else: 
-            print("Invalid entry")
+        else:
+            print("Invalid entry - please try again")
 
 
 def record_game_stats():
@@ -442,7 +462,9 @@ def record_game_stats():
             best_score_user = all_user_stats[i][2]
     print(
         "The top score to date out of",
-        number_players, "players to date is", best_score, "by", best_score_user)
+        number_players, "players to date is", best_score,
+        "by", best_score_user
+        )
     print("You scored ", player_score)
     if(player_score > best_score):
         print("Congrats, you are the new leader")
@@ -452,7 +474,7 @@ def record_game_stats():
         print("Maybe try again to get the top score!")
         battleships_worksheet.append_row(user_stats)
         start_new_game()
-    
+
 
 def main():
     """
