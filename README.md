@@ -12,32 +12,7 @@ The project has been developed using the Python programming language.
 .
 
 #  
-## CONTENTS
 
-
-- [USER STORIES](#user-stories)
-- [FEATURES](#features)
-    - [Gameplay Components](#gameplay-components)
-        - [User vs Computer](#user-vs-computer)
-    - [Future Features](#future-features)
-    - [Images](#images)
-    - [Typography](#typography)
-- [TESTING](#testing)
-    - [User story testing](#user-story-testing)
-    - [Validation](#validation)
-        - [PEP8](#pep8-online-validation)
-    - [Manual testing](#manual-testing)
-    - [Solved bugs and errors](#solved-bugs-and-errors)
-    - [Unsolved bugs and errors](#unsolved-bugs-and-errors)
-- [TECHNOLOGIES](#technologies)
-    - [Development](#development)
-    - [Languages used](#languages-used)
-    - [Libraries used](#libraries-used)
-- [DEPLOYMENT](#deployment)
-- [CREDITS AND REFERENCES](#credits-and-references)
-- [ACKNOWLEDGEMENTS](#acknowledgements)
-
-#
 
 ## USER STORIES
 
@@ -208,7 +183,37 @@ The project has been developed using the Python programming language.
 #
 # DEPLOYMENT
 
-## Heroku
+## How to fork a repository:
+
+If you need to `FORK` a repository:
+
+1. If you have not already, login in to [GitHub](www.github.com) and go to https://github.com/fergalquinn77/project3.git
+2. In the top right corner, click `Fork`
+3. The next page will be the forked version of https://github.com/fergalquinn77/project3.git but in your own repository
+
+## How to clone a repository:
+
+If you need to make a clone of this repository:
+
+1. Fork the repository https://github.com/fergalquinn77/project3.git using the steps above
+2. Above the file list, click `Code` (Usually green at the top right of the code window)
+3. Choose if you want to clone using HTTPS, SSH or GitHub CLI, then click the copy button to the right
+4. Open Git Bash
+5. Change the directory to where you want your clone to go (your own github)
+6. Type `git clone` and then paste the URL you copied in step 4
+7. Press `Enter` to create your clone
+
+## Local depolyment:
+
+This project was constructed in Gitpod. These steps will explain how to clone this in your local envirnment. Assuming you have forked or cloned this depository, If you need to make a local clone:
+
+1. Go to Gitpod.io and create and free account
+2. Download the chrome or firefox extension
+3. Come back to depository and click on green button on top right - this will launch the code in a new workspace, from which you can make any desired edits. Note - you will have exectute the command `pip3 install -r requirements.txt`
+
+## Remote depolyment
+
+### Heroku
 
 * This Game was deployed using [Heroku](https://heroku.com/) with the following the steps:
 
@@ -240,69 +245,13 @@ The project has been developed using the Python programming language.
 22. Once the build process is complete (this can take a few seconds) you will then be able to view the live app by clicking on the button `View`
     below `Your app was successfully deployed`.
 
-## Version control
-
-* These commands were used for version control during project:
-
-    * git add `example filename` - to add files before committing
-    * git commit -m `"example message"` - to commit changes to the local repository
-    * git push - to push all committed changes to the GitHub repository
-    * git branch - to see which branch currently working on
-    * git pull - to pull all code into main branch once the feature branch had been merged and deleted
-    * git status - to see if the branch currently working on is upto date or if the are any unstaged
-    * git log --oneline - to see the last commit
-    * git commit --amend - to amend the most recent commit message
-
-## How to create a branch/Tag of main:
-
-If you need to `BRANCH` off of the main repository:
-
-1. If you have not already, login in to [GitHub](www.github.com) and go to https://github.com/fergalquinn77/project3.git
-2. On the left side of the screen underneath the nav links, click the drop down box `Main`
-3. Inside the box you will see `Create new branch/tag`
-4. Inside the text box, enter the new branch or tag name i.e., `Features`
-5. Below the Branches Tags tab, you will see `Create branch: Features from "main"`
-6. Click on `Create branch: Features from "main"` and you will be taken to the new branch page you just called `Features`
-
-## How to fork a repository:
-
-If you need to `FORK` a repository:
-
-1. If you have not already, login in to [GitHub](www.github.com) and go to https://github.com/fergalquinn77/project3.git
-2. In the top right corner, click `Fork`
-3. The next page will be the forked version of https://github.com/fergalquinn77/project3.git but in your own repository
-## How to clone a repository:
-
-If you need to make a clone of this repository:
-
-1. Fork the repository https://github.com/fergalquinn77/project3.git using the steps above
-2. Above the file list, click `Code` (Usually green at the top right of the code window)
-3. Choose if you want to clone using HTTPS, SSH or GitHub CLI, then click the copy button to the right
-4. Open Git Bash
-5. Change the directory to where you want your clone to go (your own github)
-6. Type `git clone` and then paste the URL you copied in step 4
-7. Press `Enter` to create your clone
-
-## How to make a local clone:
-
-If you need to make a local clone:
-
-1. If you have not already, login in to [GitHub](www.github.com) and go to https://github.com/fergalquinn77/project3.git
-2. Under the repository name, above the list of files, click `Code`
-3. Here you will have two options, `Clone` or `Download` the repository
-4. You should close the repository using HTTPS, clicking on the icon to copy the link
-5. At this point, you can launch the `Gitpod workspace` or choose your own directory
-5. Open Git Bash
-6. Change the current working directory to the new location of where you want the cloned directory to be
-7. Type git clone and then paste the URL you copied in step 4
-8. Press Enter, to create your local clone to your chosen directory
 
 #
 ## CREDITS AND REFERENCES
 
 ### IMAGE
 
-* Background image of numbers collage, [IStockphoto](https://www.istockphoto.com/search/2/image?phrase=numbers)
+* Background image of Battleships - from [Ultra Board Games](https://www.ultraboardgames.com/battleship/gfx/banner.jpg)
 
 
 #

@@ -69,29 +69,6 @@ ship_names = {
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 test_mode = False
 
-""" class ships():
-    def __init__(self, code, name, size, lives_remaining):
-        self.code = code
-        self.name = name
-        self.size = size
-        self.lives_remaining = lives_remaining
-
-    def bomb(self):
-        self.lives_remaining -=1
-
-sc1 = ships('c1','USS Langley',5,5)
-sb1 = ships('b1','Battleship USS Texas',4,4)
-sb2 = ships('b2','Battleship USS Iowa',4,4)
-sd1 = ships('d1','Destroyer Manley',3,3)
-sd2 = ships('d2','Destroyer Wickes',3,3)
-sd3 = ships('d3','Destroyer Philip',3,3)
-sp1 = ships('p1','Patrol Ship USS Cyclone',2,2)
-sp2 = ships('p2','Patrol Ship USS Hurricane',2,2)
-sp3 = ships('p3','Patrol Ship USS Monsoon',2,2)
-sp4 = ships('p4','Patrol Ship USS Sirocco',2,2)
-
-full_ship_details = [sc1,sb1,sb2,sd1,sd2,sd3,sp1,sp2,sp3,sp4] """
-
 
 def get_grid_size():
     """
