@@ -39,7 +39,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("project-3-battleships")
 
 num_ships = 10
-bombs_left = 4
+bombs_left = 50
 grid = []
 num_ships_sunk = 0
 grid_size = 10
@@ -314,7 +314,7 @@ def get_bomb():
     within_grid = False
     while within_grid is False:
         msg_bombs_left = (
-            f'You have {bombs_left} and '
+            f'You have {bombs_left} bombs left and '
             f'have sunk {num_ships_sunk} ships so far'
             )
         print(msg_bombs_left)

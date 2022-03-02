@@ -257,7 +257,7 @@ The project has been developed using the Python programming language.
 
 If you need to `BRANCH` off of the main repository:
 
-1. If you have not already, login in to [GitHub](www.github.com) and go to https://github.com/Chr15w1986/Python_PP3
+1. If you have not already, login in to [GitHub](www.github.com) and go to https://github.com/fergalquinn77/project3.git
 2. On the left side of the screen underneath the nav links, click the drop down box `Main`
 3. Inside the box you will see `Create new branch/tag`
 4. Inside the text box, enter the new branch or tag name i.e., `Features`
